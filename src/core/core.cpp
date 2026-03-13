@@ -18,6 +18,7 @@ export import :cstring;
 export import :errors;
 export import :functions;
 export import :initializerList;
+export import :logicalResult;
 export import :map;
 export import :set;
 export import :sharedPtr;

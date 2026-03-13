@@ -5,6 +5,7 @@ addModule(cidmolCore
   errors.cpp
   functions.cpp
   initializerList.cpp
+  logicalResult.cpp
   map.cpp
   set.cpp
   sharedPtr.cpp
