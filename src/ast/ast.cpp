@@ -1357,8 +1357,6 @@ parseFile(core::String filename);
     core::Pair<core::UniquePtr<Program>, core::UniquePtr<symbolTable::Table>>>
 parse(core::String content);
 
-namespace {
-
 template <typename STREAM> STREAM &printTab(STREAM &stream, int tab) {
   for (int i = 0; i < tab; ++i)
     stream << "  ";
@@ -1372,8 +1370,6 @@ STREAM &prettyPrintBinExpr(STREAM &stream, int tab, T *expr, core::String op) {
   expr->rval->prettyPrint(stream, tab) << ")";
   return stream;
 }
-
-} // namespace
 
 template <typename STREAM>
 STREAM &Program::prettyPrint(STREAM &stream, int tab) const {
