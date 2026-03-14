@@ -87,6 +87,14 @@ public:
     assert(result, "getValue on failed LogicalResult.\n");
     return value;
   }
+  T &getValue() {
+    assert(result, "getValue on failed LogicalResult.\n");
+    return value;
+  }
+
+  T &operator*() const { return getValue(); }
+
+  T &operator*() { return getValue(); }
 
   template <typename T2> operator LogicalResult<T2>() {
     assert(!result, "LogicalResult conversion are only available on failure.");
