@@ -263,7 +263,7 @@ export struct Token {
   }
 };
 
-core::String to_string(TokenType type) {
+export core::String to_string(TokenType type) {
   switch (type) {
   case DOUBLE_MINUS:
     return "doubleMinus";
@@ -431,7 +431,7 @@ core::String to_string(TokenType type) {
   }
 }
 
-const core::String to_string(Token tkn) {
+export const core::String to_string(Token tkn) {
   core::String result = to_string(tkn.type) + "(";
   switch (tkn.type) {
   case INT: {
