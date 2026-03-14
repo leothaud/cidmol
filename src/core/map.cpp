@@ -15,6 +15,7 @@ export module core:map;
 
 import :functions;
 import :initializerList;
+import :errors;
 
 namespace core {
 
