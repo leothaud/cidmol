@@ -1,0 +1,15 @@
+struct i8 {
+  var bit[8] bits;
+
+  cast bit {
+    var bit result = bits[0] | bits[1] | bits[2] | bits[3] | bits[4] | bits[5] | bits[6] | bits[7];
+    return result;
+  }
+}
+
+alias i8 = struct i8
+
+fun i8 main() {
+  var i8 x = 17 bitcast i8;
+  return x + 17 bitcast i8;
+}
