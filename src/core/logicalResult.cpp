@@ -64,13 +64,13 @@ export template <typename T> class LogicalResult {
       : result(result), message(message), value(move(value)) {}
 
 public:
-  [[nodiscard]] static LogicalResult<void> success(const T &value) {
+  [[nodiscard]] static LogicalResult<T> success(const T &value) {
     return LogicalResult<T>(true, "", value);
   }
-  [[nodiscard]] static LogicalResult<void> success(T &&value) {
+  [[nodiscard]] static LogicalResult<T> success(T &&value) {
     return LogicalResult<T>(true, "", move(value));
   }
-  [[nodiscard]] static LogicalResult<void> failure(core::String message) {
+  [[nodiscard]] static LogicalResult<T> failure(core::String message) {
     return LogicalResult<T>(false, message, T{});
   }
 
