@@ -20,6 +20,7 @@ export import :functions;
 export import :initializerList;
 export import :logicalResult;
 export import :map;
+export import :pair;
 export import :set;
 export import :sharedPtr;
 export import :start;
