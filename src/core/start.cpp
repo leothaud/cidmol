@@ -16,6 +16,7 @@ export module core:start;
 import :builtins;
 import :syscalls;
 import :allocs;
+import :mutex;
 
 namespace core {
 
@@ -239,7 +240,31 @@ __cxa_guard_release(u64 *guard) asm("__cxa_guard_release");
 
 export [[gnu::no_stack_protector, gnu::no_instrument_function]] void
 __cxa_guard_release(u64 *guard) {
+#ifdef CORE_THREAD
+#if __has_builtin(__atomic_store_n) and defined(__ATOMIC_RELEASE)
+  __atomic_store_n(reinterpret_cast<u8 *>(guard), (u8)1, __ATOMIC_RELEASE);
+#else
+#error No alternative for cxa_guard_release
+#endif
+#else
   *guard |= 1;
+#endif
+}
+
+export [[gnu::no_stack_protector, gnu::no_instrument_function]] void
+__cxa_guard_abort(u64 *guard) asm("__cxa_guard_abort");
+
+export [[gnu::no_stack_protector, gnu::no_instrument_function]] void
+__cxa_guard_abort(u64 *guard) {
+#ifdef CORE_THREAD
+#if __has_builtin(__atomic_store_n) and defined(__ATOMIC_RELEASE)
+  __atomic_store_n(reinterpret_cast<u8 *>(guard), (u8)0, __ATOMIC_RELEASE);
+#else
+#error No alternative for cxa_guard_release
+#endif
+#else
+  *guard |= 0;
+#endif
 }
 
 export [[gnu::no_stack_protector, gnu::no_instrument_function]] int
@@ -247,6 +272,25 @@ __cxa_guard_acquire(u64 *guard) asm("__cxa_guard_acquire");
 
 export [[gnu::no_stack_protector, gnu::no_instrument_function]] int
 __cxa_guard_acquire(u64 *guard) {
+#ifdef CORE_THREAD
+#if __has_builtin(__atomic_load_n) and defined(__ATOMIC_ACQUIRE) and           \
+    __has_builtin(__atomic_compare_exchange_n) and defined(__ATOMIC_RELAXED)
+  u8 *g = reinterpret_cast<u8 *>(guard);
+  if (__atomic_load_n(g, __ATOMIC_ACQUIRE) == 1)
+    return 0;
+  u8 expected = 0;
+  while (!__atomic_compare_exchange_n(g, &expected, 0xFF, false,
+                                      __ATOMIC_ACQUIRE, __ATOMIC_RELAXED)) {
+    if (expected == 1)
+      return 0;
+    expected = 0;
+  }
+  return 1;
+#else
+#error No alternative for __cxa_guard_acquire
+#endif
+#else
   return !(*guard & 1);
+#endif
 }
 }

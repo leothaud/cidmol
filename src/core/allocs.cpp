@@ -16,12 +16,17 @@ export module core:allocs;
 import :traits;
 import :syscalls;
 import :builtins;
+import :mutex;
 
 namespace core {
 
 export template <u64 allocaSize = 32lu * 1024lu * 1024lu * 1024lu,
                  u64 splitDelta = 1024>
 struct Allocator {
+
+#ifdef CORE_THREAD
+  Mutex mutex;
+#endif
 
   struct Header {
     Header *next, *prev;
@@ -93,6 +98,10 @@ struct Allocator {
   }
 
   [[gnu::malloc]] void *allocate(u64 size) {
+
+#ifdef CORE_THREAD
+    mutex.acquire();
+#endif
     Header *block = findBlock(size);
     if (needSplit(block, size)) {
       split(block, size);
@@ -107,6 +116,11 @@ struct Allocator {
       front = block->next;
     }
     char *mem = reinterpret_cast<char *>(block);
+
+#ifdef CORE_THREAD
+    mutex.release();
+#endif
+
     return reinterpret_cast<void *>(mem + offset);
   }
 
@@ -117,7 +131,7 @@ struct Allocator {
       return;
     }
 
-    // TODO:    assert(front != block, "Double-free.");
+    // assert(front != block, "Double-free.");
 
     if (reinterpret_cast<u64>(front) > reinterpret_cast<u64>(block)) {
       block->next = front;
@@ -133,7 +147,7 @@ struct Allocator {
       current = current->next;
     }
 
-    // TODO:    assert(current->next != block, "Double-free.");
+    // assert(current->next != block, "Double-free.");
 
     if (current->next) {
       block->next = current->next;
@@ -148,12 +162,19 @@ struct Allocator {
   }
 
   void free(void *ptr) {
-    if (ptr == nullptr)
+    if (ptr == nullptr) {
       return;
+    }
+#ifdef CORE_THREAD
+    mutex.acquire();
+#endif
     Header *block =
         reinterpret_cast<Header *>(reinterpret_cast<char *>(ptr) - offset);
     reinsert(block);
     merge(block);
+#ifdef CORE_THREAD
+    mutex.release();
+#endif
   }
 
   static Allocator &get() {
