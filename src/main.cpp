@@ -6,29 +6,20 @@ core::Mutex mutex;
 static constexpr int x_size = 1024 * 1024;
 volatile int x[x_size];
 
+int local = 2;
+
 struct X {};
 
-void f(int a, X) {
-  mutex.acquire();
-  core::sout << "f: " << a << "\n";
-}
-
-void g() {
-  // mutex.acquire();
-  for (volatile int i = x_size - 1; i >= 0; i = i - 1) {
-    core::sout << x[i] << "\n";
-  }
-  // mutex.release();
+void f(u64 n) {
+  core::getStdLogger().info("Before: ", local);
+  core::sleep(n);
+  ++local;
+  core::getStdLogger().info("After: ", local);
 }
 
 int main() {
-  X x;
-  (void)x;
-  mutex.acquire();
-  core::startThread(f, 1, x);
-  core::sleep(3);
-  mutex.release();
-  core::sleep(2);
-  core::sout << "Ok!\n";
+  for (int i = 0; i < 48; ++i) {
+    core::startThread<f>(i);
+  }
   return 0;
 }

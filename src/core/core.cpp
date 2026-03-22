@@ -20,6 +20,7 @@ export import :elf64;
 export import :errors;
 export import :functions;
 export import :initializerList;
+export import :logger;
 export import :logicalResult;
 export import :map;
 export import :multiset;

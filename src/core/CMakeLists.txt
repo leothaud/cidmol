@@ -7,6 +7,7 @@ addModule(cidmolCore
   errors.cpp
   functions.cpp
   initializerList.cpp
+  logger.cpp
   logicalResult.cpp
   map.cpp
   multiset.cpp
