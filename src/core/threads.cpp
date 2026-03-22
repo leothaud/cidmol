@@ -38,7 +38,7 @@ threadEntry(stackHead *head) {
   head->fn(head->arg);
   __atomic_store_n(&head->futex, 0, __ATOMIC_SEQ_CST);
   futexWakeAll(&head->futex);
-  delete head->arg;
+  delete[] head->arg;
   delete[] head->stack;
   exit(0);
 }
@@ -102,6 +102,7 @@ void doCall(u8 *entry) {
   auto *funEntry = reinterpret_cast<FunEntry<F, ARGS...> *>(entry);
   doCallImpl(funEntry->fun, funEntry->args,
              IndicesSequenceBuilder<sizeof...(ARGS)>{});
+  funEntry->~FunEntry();
 }
 
 export template <auto fn, typename... ARGS>
@@ -110,8 +111,8 @@ export template <auto fn, typename... ARGS>
 startThread(ARGS... args) {
   static constexpr u64 stackSize = 8 * 1024 * 1024;
   u8 *stack = new u8[stackSize];
-  stackHead *head =
-      reinterpret_cast<stackHead *>(stack + stackSize - sizeof(stackHead));
+  stackHead *head = reinterpret_cast<stackHead *>(
+      reinterpret_cast<u64>((stack + stackSize - sizeof(stackHead))) & ~0xFllu);
   u8 *entryPtr = new u8[sizeof(FunEntry<decltype(fn), ARGS...>)];
   FunEntry<decltype(fn), ARGS...> *entry =
       new (entryPtr) FunEntry<decltype(fn), ARGS...>(fn, args...);
