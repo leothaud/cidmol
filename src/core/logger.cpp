@@ -150,7 +150,7 @@ export Logger stdLogger;
 
 #ifdef CORE_THREAD
 export Logger &getThreadLogger() {
-  static __thread Logger logger = Logger(&sout, &sout, &serr);
+  static thread_local Logger logger = Logger(&sout, &sout, &serr);
   return logger;
 }
 #endif
