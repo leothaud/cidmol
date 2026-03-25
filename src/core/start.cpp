@@ -123,6 +123,8 @@ export CxaThreadAtExitWrapper &getCxaThreadAtExitWrapper() {
   return wrapper;
 }
 
+extern "C" void *__dso_handle = &__dso_handle;
+
 extern "C" export [[gnu::no_stack_protector]] int
 __cxa_atexit(void (*func)(void *), void *arg, void *dso) {
   if (cxaAtExitIndex == numCxaAtExitElements) {
