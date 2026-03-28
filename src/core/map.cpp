@@ -32,6 +32,7 @@ export template <typename K, typename V> class Map {
     EntryList *next;
   };
   EntryList *front;
+  u64 size = 0;
 
 public:
   void insert(const K key, V &&value) {
@@ -39,6 +40,7 @@ public:
       front = new EntryList{.entry =
                                 (Entry){.key = key, .value = core::move(value)},
                             .next = nullptr};
+      size = 1;
       return;
     }
     auto *current = front;
@@ -52,6 +54,7 @@ public:
         current->next = new EntryList{
             .entry = (Entry){.key = key, .value = core::move(value)},
             .next = nullptr};
+        ++size;
         return;
       }
 
@@ -63,6 +66,7 @@ public:
     if (front == nullptr) {
       front = new EntryList{.entry = (Entry){.key = key, .value = value},
                             .next = nullptr};
+      size = 1;
       return;
     }
     auto *current = front;
@@ -75,6 +79,7 @@ public:
       if (current->next == nullptr) {
         current->next = new EntryList{
             .entry = (Entry){.key = key, .value = value}, .next = nullptr};
+        ++size;
         return;
       }
 
@@ -142,6 +147,8 @@ public:
     for (auto entry : init)
       insert(entry.key, entry.value);
   }
+
+  u64 getSize() const { return size; }
 
   class Iterator {
     EntryList *current;
