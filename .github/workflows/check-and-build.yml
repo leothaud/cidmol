@@ -1,0 +1,71 @@
+name: Check and build
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: Check formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Template Code
+        uses: actions/checkout@v4
+      - name: clang-format
+        uses: DoozyX/clang-format-lint-action@v0.18.2
+        with:
+          source: "./src"
+          extensions: "cpp"
+          clangFormatVersion: 16
+
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    # Request permissions to push to gh-pages branch.
+    permissions:
+      contents: write
+    steps:
+      - name: Configure Environment
+        run: |
+          sudo apt-get -y update
+          sudo apt-get install -y \
+            build-essential \
+            ninja-build \
+            cmake \
+            curl \
+            git \
+            grep \
+            libgtest-dev \
+            openssh-client \
+            python3 \
+            python3-setuptools \
+            python3-pip \
+            sudo \
+            zlib1g-dev \
+            libtinfo-dev \
+            libxml2-dev \
+            clang \
+            lld \
+            gawk \
+            libffi-dev \
+            graphviz \
+            xdot \
+            pkg-config \
+            libboost-system-dev \
+            libboost-python-dev \
+            libboost-filesystem-dev \
+            mold
+      - name: Get cidmol
+        uses: actions/checkout@v4
+        with:
+          path: "cidmol"
+      - name: Debug build
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/cidmol/debug-build"
+          cd "$GITHUB_WORKSPACE/cidmol/debug-build"
+          cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Debug
+          cmake --build .
+      - name: Release build
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/cidmol/release-build"
+          cd "$GITHUB_WORKSPACE/cidmol/release-build"
+          cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Release
+          cmake --build .
