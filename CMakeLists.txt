@@ -23,7 +23,7 @@ macro(set_alternate_compiler compiler)
   endif()
 endmacro()
 
-set(USE_ALTERNATE_COMPILER "clang++" CACHE STRING "Use alternate compiler. Leave empty for system default" FORCE)
+set(USE_ALTERNATE_COMPILER "clang++" CACHE STRING "Use alternate compiler. Leave empty for system default")
 
 if(NOT "${USE_ALTERNATE_COMPILER}" STREQUAL "")
   set_alternate_compiler("${USE_ALTERNATE_COMPILER}")
@@ -38,13 +38,15 @@ macro(set_alternate_linker linker)
     else()
       add_link_options("-fuse-ld=${USE_ALTERNATE_LINKER}")
     endif()
+
+    message(STATUS "Found alternate linker ${linker}")
   else()
     message(STATUS "Failed to find alternate linker ${linker}")
     set(USE_ALTERNATE_LINKER "" CACHE STRING "Use alternate linker" FORCE)
   endif()
 endmacro()
 
-set(USE_ALTERNATE_LINKER "mold" CACHE STRING "Use alternate linker. Leave empty for system default; alternatives are 'gold', 'lld', 'bfd' or 'mold'" FORCE)
+set(USE_ALTERNATE_LINKER "mold" CACHE STRING "Use alternate linker. Leave empty for system default; alternatives are 'gold', 'lld', 'bfd' or 'mold'")
 
 if(NOT "${USE_ALTERNATE_LINKER}" STREQUAL "")
   set_alternate_linker("${USE_ALTERNATE_LINKER}")
@@ -84,7 +86,7 @@ endif(ENABLE_THREADS)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}   -Wall -Wextra -Werror -Wno-unused-command-line-argument  -march=native \
   -mtune=native -fno-rtti -fno-exceptions -nostdlib -ffreestanding -nostdinc \
-  -fno-lax-vector-conversions -fno-math-errno -fno-trapping-math -ferror-limit=0")
+  -ferror-limit=0 -flto")
 
 function(addSource target)
   set(sources "")
