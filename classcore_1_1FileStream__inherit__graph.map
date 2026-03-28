@@ -1,0 +1,4 @@
+<map id="core::FileStream" name="core::FileStream">
+<area shape="rect" id="node1" title="Stream wrapper around a file with auto openning and closing." alt="" coords="5,79,133,104"/>
+<area shape="rect" id="node2" href="$classcore_1_1FdStream.html" title="Stream wrapper around a file descriptor." alt="" coords="9,5,130,31"/>
+</map>

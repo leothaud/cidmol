@@ -1,0 +1,5 @@
+<map id="core::Map&lt; K, V &gt;" name="core::Map&lt; K, V &gt;">
+<area shape="rect" id="node1" title="Map with keys of type K and values of type V Naive implementation using a list of entry." alt="" coords="9,211,152,236"/>
+<area shape="rect" id="node2" href="$structcore_1_1Map_1_1EntryList.html" title=" " alt="" coords="5,108,156,148"/>
+<area shape="rect" id="node3" href="$structcore_1_1Map_1_1Entry.html" title=" " alt="" coords="5,5,156,45"/>
+</map>

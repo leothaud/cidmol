@@ -1,0 +1,7 @@
+<map id="core::StartThreadOptions" name="core::StartThreadOptions">
+<area shape="rect" id="node1" title="Options given to the startThread function." alt="" coords="118,211,302,236"/>
+<area shape="rect" id="node2" href="$classcore_1_1Logger.html" title="Logger class used to redirrect outputs. Has three output stream, for infos, for warnings and for erro..." alt="" coords="81,123,184,148"/>
+<area shape="rect" id="node3" href="$classcore_1_1FdStream.html" title="Stream wrapper around a file descriptor." alt="" coords="5,5,127,31"/>
+<area shape="rect" id="node4" href="$structcore_1_1Mutex.html" title=" " alt="" coords="151,5,250,31"/>
+<area shape="rect" id="node5" href="$classcore_1_1ExecutionFutex.html" title="Wrapper for the futex allowing the parent thread to check or wait for the thread execution." alt="" coords="209,123,366,148"/>
+</map>

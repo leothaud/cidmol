@@ -1,0 +1,4 @@
+<map id="core::LogicalResult&lt; T &gt;" name="core::LogicalResult&lt; T &gt;">
+<area shape="rect" id="node1" title="Class used as function result values for function that can fail. Either contains the real result valu..." alt="" coords="5,93,188,119"/>
+<area shape="rect" id="node2" href="$classcore_1_1String.html" title="Class representing strings with memory handled by the class for easy usage." alt="" coords="49,5,145,31"/>
+</map>

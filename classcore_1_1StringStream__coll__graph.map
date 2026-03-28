@@ -1,0 +1,4 @@
+<map id="core::StringStream" name="core::StringStream">
+<area shape="rect" id="node1" title="Stream wrapper that constructs a String when written into." alt="" coords="5,93,148,119"/>
+<area shape="rect" id="node2" href="$classcore_1_1String.html" title="Class representing strings with memory handled by the class for easy usage." alt="" coords="29,5,125,31"/>
+</map>

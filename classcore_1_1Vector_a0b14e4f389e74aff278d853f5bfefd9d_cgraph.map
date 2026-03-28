@@ -1,0 +1,4 @@
+<map id="core::Vector::pushBack" name="core::Vector::pushBack">
+<area shape="rect" id="node1" title="Add the element value at the end of the vector. Call grow() if the buffer is too small." alt="" coords="5,5,176,31"/>
+<area shape="rect" id="node2" href="$classcore_1_1Vector.html#aced1b2570e768f42990b0b738c647cb4" title="Increase the size of the buffer. If the current capacity is lower than the threshold capacityThreshol..." alt="" coords="224,5,363,31"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="core::Allocator&lt; allocaSize, splitDelta &gt;" name="core::Allocator&lt; allocaSize, splitDelta &gt;">
+<area shape="rect" id="node1" title="Thread&#45;safe list allocator." alt="" coords="5,108,207,148"/>
+<area shape="rect" id="node2" href="$structcore_1_1Mutex.html" title=" " alt="" coords="18,13,117,38"/>
+<area shape="rect" id="node3" href="$structcore_1_1Allocator_1_1Header.html" title=" " alt="" coords="141,5,343,45"/>
+</map>

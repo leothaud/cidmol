@@ -1,0 +1,8 @@
+<map id="core::stackHead" name="core::stackHead">
+<area shape="rect" id="node1" title="Represent the data given to the new thread." alt="" coords="223,211,349,236"/>
+<area shape="rect" id="node2" href="$structcore_1_1TlsHeader.html" title=" " alt="" coords="5,123,129,148"/>
+<area shape="rect" id="node3" href="$classcore_1_1ExecutionFutex.html" title="Wrapper for the futex allowing the parent thread to check or wait for the thread execution." alt="" coords="207,123,365,148"/>
+<area shape="rect" id="node4" href="$classcore_1_1Logger.html" title="Logger class used to redirrect outputs. Has three output stream, for infos, for warnings and for erro..." alt="" coords="389,123,492,148"/>
+<area shape="rect" id="node5" href="$classcore_1_1FdStream.html" title="Stream wrapper around a file descriptor." alt="" coords="313,5,435,31"/>
+<area shape="rect" id="node6" href="$structcore_1_1Mutex.html" title=" " alt="" coords="459,5,558,31"/>
+</map>
