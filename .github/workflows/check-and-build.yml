@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   lint:
     name: Check formatting
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Get Template Code
         uses: actions/checkout@v4
@@ -18,7 +18,7 @@ jobs:
 
   build:
     name: Build and test
-    runs-on: archlinux-latest
+    runs-on: self-hosted
     container:
       image: leothaud/cidmol-build:latest
     # Request permissions to push to gh-pages branch.
