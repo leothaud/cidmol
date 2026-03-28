@@ -26,39 +26,87 @@ import :logger;
 
 namespace core {
 
-struct [[gnu::aligned(16)]] stackHead {
-  void (*entry)(stackHead *);
-  TlsHeader *tlsHeader;
+//! Wrapper for the futex allowing the parent thread to check or wait for the
+//! thread execution.
+export class ExecutionFutex {
   int futex;
+
+  void set(int value) { __atomic_store_n(&futex, value, __ATOMIC_SEQ_CST); }
+  void wakeAll() { futexWakeAll(&futex); }
+
+  friend void terminate(ExecutionFutex *);
+
+public:
+  ExecutionFutex() : futex(1) {}
+
+  //! Non blocking check.
+  //! @return `true` iff the execution is terminated
+  bool finished() { return __atomic_load_n(&futex, __ATOMIC_SEQ_CST) == 0; }
+  //! Blocking method. Returns only when the execution is terminated.
+  void wait() {
+    while (__atomic_load_n(&futex, __ATOMIC_SEQ_CST) != 0) {
+      futexWait(&futex, 0);
+    }
+  }
+};
+
+//! Tells that the thread execution is terminated. Should only be called by
+//! the child thread.
+void terminate(ExecutionFutex *futex) {
+  futex->set(0);
+  futex->wakeAll();
+}
+
+//! Represent the data given to the new thread.
+//! @warning No dot modify the first two elements,
+//! the first one is necessary as first for thread starting
+//! The tlsHeader is accessed by offset
+struct [[gnu::aligned(16), gnu::packed]] stackHead {
+  //! void threadEntry(stackHead *head) function pointer.
+  void (*entry)(stackHead *);
+  //! Pointer to the tlsHeader
+  TlsHeader *tlsHeader;
+  //! Futex used to give information on execution termination
+  ExecutionFutex *futex;
+  //! Wrapper for the target function
   void (*fn)(u8 *);
+  //! wrapper for the target function arguments
   u8 *arg;
+  //! Top of the stack for the new thread
   u8 *stack;
+  //! logger to initialize the threadLogger with
   Logger *logger;
 };
 
+//! Entry functino for new threads.
 [[clang::noinline, clang::no_stack_protector]] void
 threadEntry(stackHead *head) {
-  getThreadLogger() = *head->logger;
+  // Initialize the thread logger.
+  getThreadLogger() = head->logger;
+  // Call the target function wrapper
   head->fn(head->arg);
-  __atomic_store_n(&head->futex, 0, __ATOMIC_SEQ_CST);
-  futexWakeAll(&head->futex);
+  // Broadcast termination
+  if (head->futex) {
+    terminate(head->futex);
+  }
 
+  // Call the thread_local variable destructors.
   auto &cxaAtExitWrapper = getCxaThreadAtExitWrapper();
   for (u64 i = cxaAtExitWrapper.index; i > 0; --i) {
     cxaAtExitWrapper.func[i](cxaAtExitWrapper.arg[i]);
     cxaAtExitWrapper.func[i] = nullptr;
   }
 
+  // Free the thread data and stack
+  // Warning: this will work with the current allocator
+  // and exit implementation. But may break if allocator change
   delete[] head->tlsHeader->tlsInfo;
   delete[] head->arg;
   delete[] head->stack;
   exit(0);
 }
 
-struct Thread {
-  int tid;
-};
-
+//! Create a new thread with `stack` as stack
 [[gnu::naked]] long newthread(stackHead *stack) {
 #if defined(linux) and defined(__x86_64__) and __has_extension(gnu_asm)
   __asm__ volatile("mov %%rdi, %%rsi\n"
@@ -77,6 +125,7 @@ struct Thread {
 #endif
 }
 
+//! @cond INTERNAL
 template <typename... ARGS> struct ParameterPack;
 template <> struct ParameterPack<> {
   ParameterPack() {}
@@ -111,7 +160,9 @@ template <typename F, typename... ARGS, u64... I>
 void doCallImpl(F &fun, ParameterPack<ARGS...> args, IndicesSequence<I...>) {
   fun(ArgsBuilder<I, ParameterPack<ARGS...>>::get(args)...);
 }
+//! @endcond
 
+//! Wrapper to call the target function
 template <typename F, typename... ARGS>
   requires(IsCallable<F, ARGS...>)
 void doCall(u8 *entry) {
@@ -121,10 +172,33 @@ void doCall(u8 *entry) {
   funEntry->~FunEntry();
 }
 
+//! Options given to the startThread function.
+export class StartThreadOptions {
+  //! Initial threadLogger value
+  Logger *const logger;
+  //! Pointer to the termination futex
+  ExecutionFutex *const futex;
+
+  template <auto fn, typename... ARGS>
+    requires(IsCallable<decltype(fn), ARGS...>)
+  friend void startThread(StartThreadOptions options, ARGS &&...args);
+
+public:
+  constexpr StartThreadOptions() : logger(&stdLogger), futex(nullptr) {}
+  constexpr StartThreadOptions(Logger *logger)
+      : logger(logger), futex(nullptr) {}
+  constexpr StartThreadOptions(ExecutionFutex *futex)
+      : logger(&stdLogger), futex(futex) {}
+  constexpr StartThreadOptions(Logger *logger, ExecutionFutex *futex)
+      : logger(logger), futex(futex) {}
+};
+
+//! Start a thread that call function `fn` with arguments `args...` and
+//! initialized with loggers and futex in `options`.
 export template <auto fn, typename... ARGS>
   requires(IsCallable<decltype(fn), ARGS...>)
-[[clang::always_inline, clang::no_stack_protector]] int *
-startThread(Logger *logger, ARGS... args) {
+[[clang::always_inline, clang::no_stack_protector]] void
+startThread(StartThreadOptions options, ARGS &&...args) {
   static constexpr u64 stackSize = 8 * 1024 * 1024;
   u8 *stack = new u8[stackSize];
   stackHead *head = reinterpret_cast<stackHead *>(
@@ -132,41 +206,26 @@ startThread(Logger *logger, ARGS... args) {
   u8 *entryPtr = new u8[sizeof(FunEntry<decltype(fn), ARGS...>)];
   FunEntry<decltype(fn), ARGS...> *entry = new (entryPtr)
       FunEntry<decltype(fn), ARGS...>(fn, forward<ARGS>(args)...);
-  head->logger = logger;
+  head->logger = options.logger;
   head->entry = threadEntry;
-  head->futex = 1;
+  head->futex = options.futex;
   head->fn = doCall<decltype(fn), ARGS...>;
   head->arg = entryPtr;
   head->stack = stack;
   head->tlsHeader = allocateTls();
 
   newthread(head);
-  return &head->futex;
 }
 
+//! Start a thread that call function `fn` with arguments `args...` and default
+//! StartThreadOptions.
 export template <auto fn, typename... ARGS>
   requires(IsCallable<decltype(fn), ARGS...>)
-[[clang::always_inline, clang::no_stack_protector]] int *
-startThread(ARGS... args) {
-  return startThread<fn>(&stdLogger, forward<ARGS>(args)...);
+[[clang::always_inline, clang::no_stack_protector]] void
+startThread(ARGS &&...args) {
+  startThread<fn>(StartThreadOptions{}, forward<ARGS>(args)...);
 }
 
-export template <auto fn, typename... ARGS>
-  requires(!IsCallable<decltype(fn), ARGS...>)
-[[clang::always_inline, clang::no_stack_protector]] int *startThread(ARGS...) {
-  static_assert(
-      false,
-      "startThread arguments are not compatible with the target function.");
-}
-
-export template <auto fn, typename... ARGS>
-  requires(!IsCallable<decltype(fn), ARGS...>)
-[[clang::always_inline, clang::no_stack_protector]] int *startThread(Logger *,
-                                                                     ARGS...) {
-  static_assert(
-      false,
-      "startThread arguments are not compatible with the target function.");
-}
 }; // namespace core
 
 #endif

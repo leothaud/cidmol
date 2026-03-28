@@ -20,14 +20,28 @@ import :builtins;
 
 namespace core {
 
+//! Represent a vector of values.\n
+//! Values are stored in a contiguous buffer.
 export template <typename T> class Vector {
 
+  //! Capacity of an empty - just created - vector.
   static constexpr u64 defaultCapacity = 4;
+
+  //! Threshold to limit the capacity growth of the buffer.
   static constexpr u64 capacityThreshold = 1024;
 
-  u64 size, capacity;
+  //! The size of the vector is the number of element stored in the buffer.
+  u64 size;
+  //! The capacity of the vector is the maximum number of elment that can be
+  //! stored in the buffer.
+  u64 capacity;
+  //! The buffer storing the values in the vector.
   T *buffer;
 
+  //! Increase the size of the buffer.\n
+  //! If the current capacity is lower than the threshold `capacityThreshold`,
+  //! double the capacity.\n Else, increase the current capacity by
+  //! `capacityThreshold`.
   void grow() {
     u64 newCapacity = (capacity < capacityThreshold)
                           ? (2 * capacity)
@@ -47,7 +61,7 @@ public:
   Vector()
       : size(0), capacity(defaultCapacity), buffer(new T[defaultCapacity]) {}
 
-  Vector(initializerList<T> l) : Vector() {
+  Vector(InitializerList<T> l) : Vector() {
     for (const T &elt : l) {
       pushBack(elt);
     }
@@ -84,17 +98,29 @@ public:
     return *this;
   }
 
+  //! Return the number of elements in the vector.
   u64 length() const { return size; }
 
+  //! Access to an element of the vector at a given position.
+  //! @param index: the position of an element.
+  //! @pre`index < length()`.
+  //! @return A reference to the element at position `index`.
   T &operator[](u64 index) {
     assert(index < size);
     return buffer[index];
   }
+
+  //! Access to an element of the vector at a given position.
+  //! @param index: the position of an element.
+  //! @pre`index < length()`.
+  //! @return A reference to the element at position `index`.
   T &operator[](u64 index) const {
     assert(index < size);
     return buffer[index];
   }
 
+  //! Add the element `value` at the end of the vector.
+  //! Call `grow()` if the buffer is too small.
   void pushBack(const T &value) {
     if (size == capacity) {
       grow();
@@ -102,6 +128,8 @@ public:
     assert(size < capacity);
     buffer[size++] = value;
   }
+  //! Add the element `value` at the end of the vector.
+  //! Call `grow()` if the buffer is too small.
   void pushBack(T &&value) {
     if (size == capacity) {
       grow();
@@ -110,6 +138,7 @@ public:
     buffer[size++] = move(value);
   }
 
+  //! Iterator over the vector buffer.
   class Iterator {
     T *buffer;
     u64 index;

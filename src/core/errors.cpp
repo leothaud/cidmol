@@ -20,10 +20,14 @@ namespace core {
 
 #ifndef NDEBUG
 
+//! @cond INTERNAL
+
 [[noreturn, clang::always_inline]] void doFail(const core::String message) {
   serr << "Assertion failed.\n" << message << "\n";
   exit(1);
 }
+
+//! @endcond
 
 export void assert(bool cond, const core::String message) {
   if (!cond) {

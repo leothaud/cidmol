@@ -18,6 +18,10 @@ import :mutex;
 
 namespace core {
 
+//! Logger class used to redirrect outputs.
+//! Has three output stream, for infos, for warnings and for errors.
+//! For multithreaded execution, the logger can be configured as concurrent
+//! or as shared to ensure non-entrelacing outputs.
 export class Logger {
   FdStream *infoStream, *warningStream, *errorStream;
   bool labels;
@@ -144,17 +148,30 @@ public:
     }
 #endif
   }
+
+#ifdef CORE_THREAD
+  bool isShared() const { return shared; }
+  void setShared() { shared = true; }
+  void setShared(bool shared) { this->shared = shared; }
+  void unsetShared() { shared = false; }
+#endif
 };
 
+//! Standard output logger. infos/warnings -> stdout. errors -> stderr
 export Logger stdLogger;
 
 #ifdef CORE_THREAD
-export Logger &getThreadLogger() {
-  static thread_local Logger logger = Logger(&sout, &sout, &serr);
+//! Get a thread-local logger. Initial value is stdLogger, but can be changed.
+export [[gnu::always_inline]] Logger *&getThreadLogger() {
+  static thread_local Logger *logger = &stdLogger;
   return logger;
 }
+//! Reset the thread logger value to stdLogger
+export void resetThreadLogger() { getThreadLogger() = &stdLogger; }
 #endif
 
+//! Initialize stdLooger, necessary because of global variable initialisation
+//! order.
 export void initializeLoggers() { stdLogger = Logger(&sout, &sout, &serr); }
 
 } // namespace core

@@ -18,6 +18,8 @@ import :initializerList;
 
 namespace core {
 
+//! Set that contains unique values of types `T`
+//! Naive implementation using a list of elements
 export template <typename T> class Set {
   struct Node {
     T value;
@@ -36,7 +38,7 @@ public:
   }
 
   Set() : front(nullptr) {}
-  Set(initializerList<T> l) : front(nullptr) {
+  Set(InitializerList<T> l) : front(nullptr) {
     for (auto &t : l)
       insert(t);
   }

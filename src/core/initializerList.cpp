@@ -15,6 +15,8 @@ export module core:initializerList;
 
 import :builtins;
 
+//! @cond INTERNAL
+
 namespace std {
 export template <typename T> class initializer_list {
 private:
@@ -27,6 +29,9 @@ public:
 };
 } // namespace std
 
+//! @endcond
+
 namespace core {
-export template <typename T> using initializerList = ::std::initializer_list<T>;
-}
+//! Wrapper to use standard C++ initializee_list in constructors.
+export template <typename T> using InitializerList = ::std::initializer_list<T>;
+} // namespace core

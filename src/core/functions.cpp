@@ -18,6 +18,8 @@ import :traits;
 
 namespace core {
 
+//! @cond INTERNAL
+
 template <typename R, typename... Args> struct CallableBase {
   virtual ~CallableBase() = default;
   virtual R call(Args... args) = 0;
@@ -34,6 +36,11 @@ public:
   }
 };
 
+//! @endcond
+
+//! Function-type wrapper to use it as arguments.
+//! For example Function<int, char, char> to encode a function with return type
+//! int and two char as arguments.
 export template <typename R, typename... Args> class Function {
   SharedPtr<CallableBase<R, Args...>> fun;
 

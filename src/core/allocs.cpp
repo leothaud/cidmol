@@ -20,6 +20,11 @@ import :mutex;
 
 namespace core {
 
+//! @cond INTERNAL
+export void assert(bool cond, const char *message);
+//! @endcond
+
+//! Thread-safe list allocator.
 export template <u64 allocaSize = 32lu * 1024lu * 1024lu * 1024lu,
                  u64 splitDelta = 1024>
 struct Allocator {
@@ -131,7 +136,7 @@ struct Allocator {
       return;
     }
 
-    // assert(front != block, "Double-free.");
+    assert(front != block, "Double-free.");
 
     if (reinterpret_cast<u64>(front) > reinterpret_cast<u64>(block)) {
       block->next = front;
@@ -147,7 +152,7 @@ struct Allocator {
       current = current->next;
     }
 
-    // assert(current->next != block, "Double-free.");
+    assert(current->next != block, "Double-free.");
 
     if (current->next) {
       block->next = current->next;

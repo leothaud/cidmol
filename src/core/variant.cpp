@@ -19,6 +19,7 @@ import :builtins;
 
 namespace core {
 
+//! @cond INTERNAL
 template <typename, typename...> struct IndexOfBase;
 
 template <typename Elt, typename... Ts> struct IndexOfBase<Elt, Elt, Ts...> {
@@ -46,8 +47,11 @@ struct GetTypeBase<N, enableIf<N != 0>, H, T...> {
 template <unsigned N, typename... T>
 using GetType = typename GetTypeBase<N, T...>::type;
 
+//! @endcond
+
 export template <typename... Ts> class Variant;
 
+//! @cond INTERNAL
 export template <typename T> class Variant<T> {
 protected:
   T elt;
@@ -91,7 +95,9 @@ public:
 
   template <typename F> auto visit(F &&f) { return f(elt); }
 };
+//! @endcond
 
+//! Class containing a value of one of the types `Ts...`.
 export template <typename... Ts> class Variant {
 protected:
   static constexpr u64 maxSize = TraitMax<sizeof(Ts)...>;
@@ -130,6 +136,8 @@ public:
     }
   }
 
+  //! Used for initialied the Variant with a value of the type at `index`
+  //! and the value stored in `other`.
   template <int idx> void initValue(int index, Variant &other) {
     if (idx == index) {
       using t = GetType<idx, void, Ts...>;
@@ -159,6 +167,7 @@ public:
     set<T>(elt);
   }
 
+  //! Set the value of the variant with value `elt`.
   template <typename T>
   void set(T &&elt, enableIf<(isSame<T, Ts> || ...), int> = 0) {
     finalize();
@@ -172,6 +181,7 @@ public:
     }
   }
 
+  //! Set the value of the variant with value `elt`.
   template <typename T>
   void set(const T &elt, enableIf<(isSame<T, Ts> || ...), int> = 0) {
     finalize();
@@ -187,11 +197,15 @@ public:
     }
   }
 
+  //! Returns true iff the value contained by the variant is of type `T`.
   template <typename T>
   bool isA(enableIf<(isSame<LoseConst<T>, Ts> || ...), int> = 0) {
     return index == IndexOf<T, Ts...>;
   }
 
+  //! Get the value of the variant with type `T`.
+  //! @return A reference to the value in the variant.
+  //! @pre `isa<T>()` must be true.
   template <typename T>
   T &get(enableIf<(isSame<LoseConst<T>, Ts> || ...), int> = 0) {
     constexpr u64 index = IndexOf<LoseConst<T>, Ts...>;
@@ -201,6 +215,9 @@ public:
     trap();
   }
 
+  //! Get the value of the variant with type `T`.
+  //! @return A reference to the value in the variant.
+  //! @pre `isa<T>()` must be true.
   template <typename T>
   T &get(enableIf<(isSame<LoseConst<T>, Ts> || ...), int> = 0) const {
     constexpr u64 index = IndexOf<LoseConst<T>, Ts...>;
@@ -237,10 +254,14 @@ public:
     }
   }
 
+  //! Apply `f` on the value stored in the variant
+  //! and returns its result.
   template <typename F> decltype(auto) visit(F &&f) {
     return visitImpl<sizeof...(Ts) - 1>(f);
   }
 
+  //! Apply `f` on the value stored in the variant
+  //! and returns its result.
   template <typename F> decltype(auto) visit(F &&f) const {
     return visitImpl<sizeof...(Ts) - 1>(f);
   }

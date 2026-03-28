@@ -18,6 +18,8 @@ import :initializerList;
 
 namespace core {
 
+//! Just like a Set, but can contains several instance of the same value.
+//! Unordered List of elements of type T with set-like methods
 export template <typename T> class MultiSet {
   struct Node {
     T value;
@@ -36,7 +38,7 @@ public:
   }
 
   MultiSet() : front(nullptr), last(nullptr) {}
-  MultiSet(initializerList<T> l) : front(nullptr), last(nullptr) {
+  MultiSet(InitializerList<T> l) : front(nullptr), last(nullptr) {
     for (auto &t : l)
       insert(t);
   }

@@ -19,6 +19,7 @@ import :ioUtils;
 
 namespace core {
 
+//! Stream wrapper around a file descriptor.
 export class FdStream {
 protected:
   int fd;
@@ -65,6 +66,8 @@ public:
     return *this;
   }
 };
+
+//! @cond INTERNAL
 
 template <bool SIGNED = true> FdStream &printInt(FdStream &stream, u64 value);
 template <> FdStream &printInt<false>(FdStream &stream, u64 value);
@@ -136,6 +139,8 @@ i64 readInt(int fd) {
   } while (!finished);
   return isSigned ? -value : value;
 }
+
+//! @endcond
 
 FdStream &FdStream::operator<<(i8 i) { return printInt<true>(*this, (i64)i); }
 FdStream &FdStream::operator<<(i16 i) { return printInt<true>(*this, (i64)i); }
@@ -217,14 +222,14 @@ template <typename T> FdStream *ColorTuple<T>::printElements(FdStream *stream) {
 
 template <typename... Ts> FdStream &FdStream::operator<<(Color<Ts...> x) {
   *this << "\033[";
-  if (x.options.backgroundColor != BACKGROUND_COLORS::DEFAULT) {
+  if (x.options.backgroundColor != color::background::DEFAULT) {
     *this << static_cast<int>(x.options.backgroundColor);
 
-    if (x.options.textColor != TEXT_COLORS::DEFAULT) {
+    if (x.options.textColor != color::text::DEFAULT) {
       *this << ";";
     }
   }
-  if (x.options.textColor != TEXT_COLORS::DEFAULT) {
+  if (x.options.textColor != color::text::DEFAULT) {
     *this << static_cast<int>(x.options.textColor);
   }
   *this << "m";
@@ -273,9 +278,11 @@ FdStream &FdStream::operator>>(u64 &out) {
   return *this;
 }
 
+//! Default IOs stream.
 export FdStream sout = FdStream(stdout), serr = FdStream(stderr),
                 sin = FdStream(stdin);
 
+//! Stream wrapper around a file with auto openning and closing.
 export class FileStream : public FdStream {
 public:
   explicit FileStream(const char *filename) : FdStream(open(filename)) {}
@@ -297,6 +304,7 @@ public:
   }
 };
 
+//! Stream wrapper that constructs a String when written into.
 export class StringStream {
   core::String buffer;
 

@@ -90,13 +90,18 @@ export enum Elf64Cst {
   PT_GNU_PROPERTY = (PT_LOOS + 0x474e553)
 };
 
+//! Map of all symbols in the executed elf.
 export Map<u64, String> symbolNames;
 
+//! Fill the `symbolNames` map.
 export void initializeSymbolNames(const char *base) {
   auto *header = reinterpret_cast<const Elf64Hdr *>(base);
+
+  // Check the elf64 magic number
   assert(header->e_ident[0] == 0x7f && header->e_ident[1] == 'E' &&
          header->e_ident[2] == 'L' && header->e_ident[3] == 'F');
 
+  // Find the symtab and strtab
   const Elf64Shdr *sectionHeader =
       reinterpret_cast<const Elf64Shdr *>(base + header->e_shoff);
   const Elf64Shdr *sectionHeaderNames = &sectionHeader[header->e_shstrndx];
@@ -112,11 +117,17 @@ export void initializeSymbolNames(const char *base) {
       strtab = &sectionHeader[i];
     }
   }
+
+  // No symbols found?
+  if (!symtab || !strtab)
+    return;
+
   const Elf64Sym *symbols =
       reinterpret_cast<const Elf64Sym *>(base + symtab->sh_offset);
   u64 numSymbols = symtab->sh_size / sizeof(Elf64Sym);
   const char *names = reinterpret_cast<const char *>(base + strtab->sh_offset);
 
+  // Fill the map.
   for (u64 i = 0; i < numSymbols; ++i) {
     const char *name = names + symbols[i].st_name;
     u64 address = symbols[i].st_value;

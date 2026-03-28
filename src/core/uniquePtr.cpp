@@ -17,6 +17,7 @@ import :traits;
 
 namespace core {
 
+//! Smart pointer own by one owner at a time.
 export template <typename T>
   requires(!core::IsVoid<T>)
 class UniquePtr {
@@ -42,6 +43,8 @@ public:
     return *this;
   }
 
+  //! allocate the underlying pointer,
+  //! and initialized it with the type constructors using `args...`.
   template <typename... ARGS>
   [[nodiscard]] static UniquePtr create(ARGS &&...args) {
     return UniquePtr(new T{core::forward<ARGS &&>(args)...});
@@ -50,6 +53,9 @@ public:
   T &operator*() const { return *ptr; }
 
   T *operator->() const { return ptr; }
+
+  //! Returns the underlying pointer
+  //! @warning use with caution: memory leak, etc.
   T *getRaw() const { return ptr; }
 
   bool operator==(decltype(nullptr)) const { return ptr == nullptr; }

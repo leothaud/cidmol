@@ -18,6 +18,11 @@ import :builtins;
 
 namespace core {
 
+//! char * wrapper to use it as litteral in templates.\n
+//! @code
+//! template <StringLiteral STR> class MyClass { ... };
+//! class MyOtherClass: public MyClass<"other"> { ... };
+//! @endcode
 export template <u64 N> struct StringLiteral {
   char value[N];
   constexpr StringLiteral(const char (&str)[N]) {

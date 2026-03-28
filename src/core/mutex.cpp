@@ -21,30 +21,30 @@ import :syscalls;
 namespace core {
 
 export void acquireMutex(volatile int *mut) {
-  #if __has_builtin(__atomic_exchange_n) and defined(__ATOMIC_ACQUIRE)
+#if __has_builtin(__atomic_exchange_n) and defined(__ATOMIC_ACQUIRE)
   while (__atomic_exchange_n(mut, 1, __ATOMIC_ACQUIRE)) {
     futexWait(mut, 1);
   }
-  #else
-  #error No alternative for acquireMutex.
-  #endif
+#else
+#error No alternative for acquireMutex.
+#endif
 }
 
 export bool tryAcquireMutex(volatile int *mut) {
-  #if __has_builtin(__atomic_exchange_n) and defined(__ATOMIC_ACQUIRE)
+#if __has_builtin(__atomic_exchange_n) and defined(__ATOMIC_ACQUIRE)
   return __atomic_exchange_n(mut, 1, __ATOMIC_ACQUIRE) == 0;
-  #else
-  #error No alternative for tryAcquireMutex.
-  #endif
+#else
+#error No alternative for tryAcquireMutex.
+#endif
 }
 
 export void releaseMutex(volatile int *mut) {
-  #if __has_builtin(__atomic_clear) and defined(__ATOMIC_RELEASE)
+#if __has_builtin(__atomic_clear) and defined(__ATOMIC_RELEASE)
   __atomic_clear(mut, __ATOMIC_RELEASE);
   futexWake(mut);
-  #else
-  #error No alternative for releaseMutex.
-  #endif
+#else
+#error No alternative for releaseMutex.
+#endif
 }
 
 export struct Mutex {

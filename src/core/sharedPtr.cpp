@@ -18,6 +18,7 @@ import :builtins;
 
 namespace core {
 
+//! Shared pointer for automatic memory handling in pointers
 export template <typename T> class SharedPtr {
   T *ptr;
   u64 *count;
@@ -36,6 +37,8 @@ public:
   explicit SharedPtr(T *ptr, u64 *count) : ptr(ptr), count(count) {}
   explicit SharedPtr(T *ptr) : ptr(ptr), count(ptr ? new u64(1) : nullptr) {}
 
+  //! Allocate the memory for the pointed object and call its constructos with
+  //! arguments `args...`
   template <typename... ARGS>
   [[nodiscard]] static SharedPtr create(ARGS &&...args) {
     return SharedPtr(new T{core::forward<ARGS &&>(args)...});
@@ -81,6 +84,7 @@ public:
 
   operator bool() const { return ptr; }
 
+  //! Generate a shared pointer to the same object but with casted type
   template <typename T2> SharedPtr<T2> cast() const {
     ++*count;
     T2 *castedRaw = static_cast<T2 *>(ptr);

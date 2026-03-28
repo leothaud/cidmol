@@ -18,6 +18,8 @@ import :traits;
 
 namespace core {
 
+//! This is a class that allow iterating over two iterable at once.
+//! The precondition is that the two iterable are the same length.
 export template <typename Iterable1, typename Iterable2> class Zipped {
   Iterable1 &iterable1;
   Iterable2 &iterable2;

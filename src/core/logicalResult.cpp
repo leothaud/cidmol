@@ -20,6 +20,8 @@ import :traits;
 
 namespace core {
 
+//! @cond INTERNAL
+
 export template <typename T> class LogicalResult;
 
 export template <> class LogicalResult<void> {
@@ -52,6 +54,10 @@ public:
   friend core::FdStream &operator<<(FdStream &stream, LogicalResult result);
 };
 
+//! @endcond
+
+//! Class used as function result values for function that can fail.
+//! Either contains the real result value or an error message
 export template <typename T> class LogicalResult {
   bool result;
   String message;

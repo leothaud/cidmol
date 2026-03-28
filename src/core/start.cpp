@@ -26,14 +26,18 @@ namespace core {
 extern "C" export [[gnu::no_stack_protector]] void
 __cxa_pure_virtual() asm("__cxa_pure_virtual");
 extern "C" export [[gnu::no_stack_protector]] void __cxa_pure_virtual() {
+  getThreadLogger()->error("Calling a pure virtual method.");
   trap();
 }
 
 extern "C" export u64 __stack_chk_guard asm("__stack_chk_guard") = 167;
 extern "C" export void __stack_chk_fail(void) asm("__stack_chk_fail");
-extern "C" export void __stack_chk_fail(void) { exit(1); }
+extern "C" export void __stack_chk_fail(void) {
+  getThreadLogger()->error("Stack check failed.");
+  exit(1);
+}
 
-export enum {
+export enum : int {
   AT_NULL = 0,
   AT_IGNORE = 1,
   AT_EXECFD = 2,
@@ -92,6 +96,7 @@ export struct TlsHeader {
   u64 canary;
 };
 
+//! Tls for the main process
 export TlsInfo tlsInfo{};
 
 } // namespace core
@@ -160,6 +165,7 @@ extern "C" export [[gnu::no_stack_protector]] void __cxa_finalize(void *dso) {
   }
 }
 
+//! Allocate a thread-local storage
 export TlsHeader *allocateTls() {
   u64 align = tlsInfo.align > 16 ? tlsInfo.align : 16;
   u64 size = tlsInfo.memsz + sizeof(TlsHeader);
@@ -188,6 +194,7 @@ extern "C" export [[gnu::no_stack_protector]] int init(int, char **, char **,
 extern "C" export [[gnu::no_stack_protector]] int
 init(int argc, char **argv, char **envp, Elf32Auxv *auxv) {
 
+  // Initialize the auxilliary vector
   while (auxv->aType != AT_NULL) {
     if (auxv->aType < 33) {
       auxvVals[auxv->aType] = auxv->aUn;
@@ -265,19 +272,19 @@ export void *operator new(u64 size) {
   return core::DefaultAllocator::get().allocate(size);
 }
 
-export void operator delete(void *ptr) {
+export void operator delete(void *ptr) noexcept {
   if (!ptr)
     return;
   core::DefaultAllocator::get().free(ptr);
 }
 
-export void operator delete(void *ptr, u64) { operator delete(ptr); }
+export void operator delete(void *ptr, u64) noexcept { operator delete(ptr); }
 
 export void *operator new[](u64 size) { return operator new(size); }
 
-export void operator delete[](void *ptr) { operator delete(ptr); }
+export void operator delete[](void *ptr) noexcept { operator delete(ptr); }
 
-export void operator delete[](void *ptr, u64) { operator delete(ptr); }
+export void operator delete[](void *ptr, u64) noexcept { operator delete(ptr); }
 
 export void *operator new(u64 size, AlignVal al) {
   u64 total = size + static_cast<u64>(al) + sizeof(void *);

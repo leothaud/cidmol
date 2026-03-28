@@ -19,6 +19,8 @@ import :errors;
 
 namespace core {
 
+//! Map with keys of type `K` and values of type `V`
+//! Naive implementation using a list of entry
 export template <typename K, typename V> class Map {
 
   struct Entry {
@@ -136,7 +138,7 @@ public:
   }
 
   Map() : front(nullptr) {}
-  Map(initializerList<Entry> init) : front(nullptr) {
+  Map(InitializerList<Entry> init) : front(nullptr) {
     for (auto entry : init)
       insert(entry.key, entry.value);
   }

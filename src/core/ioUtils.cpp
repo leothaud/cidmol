@@ -18,6 +18,7 @@ import :traits;
 
 namespace core {
 
+//! Wrapper to print numbers in hexadecimal format
 export struct Hex {
   u64 value;
 
@@ -34,7 +35,8 @@ export constexpr core::Hex operator""_x(unsigned long long value) {
 
 namespace core {
 
-export enum class TEXT_COLORS : int {
+namespace color {
+export enum class text : int {
   RED = 31,
   GREEN = 32,
   YELLOW = 33,
@@ -46,7 +48,7 @@ export enum class TEXT_COLORS : int {
   DEFAULT = 0,
 };
 
-export enum class BACKGROUND_COLORS : int {
+export enum class background : int {
   RED = 41,
   GREEN = 42,
   YELLOW = 43,
@@ -64,9 +66,11 @@ export enum class BACKGROUND_COLORS : int {
 
   DEFAULT = 0,
 };
+} // namespace color
 
 export class FdStream;
 
+//! @cond INTERNAL
 template <typename... T> struct ColorTuple;
 
 template <typename H, typename... T>
@@ -87,33 +91,39 @@ template <typename T> struct ColorTuple<T> {
 
 template <typename... T> struct Color {
   struct ColorOption {
-    BACKGROUND_COLORS backgroundColor;
-    TEXT_COLORS textColor;
+    color::background backgroundColor;
+    color::text textColor;
   } options;
   ColorTuple<T...> values;
 
-  constexpr Color(BACKGROUND_COLORS backgroundColor, TEXT_COLORS textColor,
+  constexpr Color(color::background backgroundColor, color::text textColor,
                   T... values)
       : options{backgroundColor, textColor}, values(values...) {}
 };
 
-export template <BACKGROUND_COLORS background, TEXT_COLORS text, typename... T>
+//! @endcond
+
+//! Wrapper used to print values with a background color and a text color.
+export template <color::background background, color::text text, typename... T>
 auto getColor(T... values) {
   return Color<T...>(background, text, values...);
 }
 
-export template <TEXT_COLORS text, BACKGROUND_COLORS background, typename... T>
+//! Wrapper used to print values with a background color and a text color.
+export template <color::text text, color::background background, typename... T>
 auto getColor(T... values) {
   return Color<T...>(background, text, values...);
 }
 
-export template <TEXT_COLORS text, typename... T> auto getColor(T... values) {
-  return Color<T...>(BACKGROUND_COLORS::DEFAULT, text, values...);
+//! Wrapper used to print values with a text color.
+export template <color::text text, typename... T> auto getColor(T... values) {
+  return Color<T...>(color::background::DEFAULT, text, values...);
 }
 
-export template <BACKGROUND_COLORS background, typename... T>
+//! Wrapper used to print values with a background color.
+export template <color::background background, typename... T>
 auto getColor(T... values) {
-  return Color<T...>(background, TEXT_COLORS::DEFAULT, values...);
+  return Color<T...>(background, color::text::DEFAULT, values...);
 }
 
 } // namespace core

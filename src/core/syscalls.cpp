@@ -549,7 +549,8 @@ export [[gnu::always_inline, gnu::no_stack_protector]] u64 archPrctl(u64 tls) {
   return syscall<ARCH_PRCTL>(0x1002, tls);
 }
 
-export [[gnu::noreturn]] void exit(u64 code) {
+export [[gnu::noreturn, gnu::always_inline, gnu::no_stack_protector]] void
+exit(u64 code) {
   syscall<EXIT>(code);
   unreachable();
 }

@@ -21,6 +21,8 @@ import :traits;
 
 namespace core {
 
+//! @cond INTERNAL
+
 char *fillBuffer(char *buffer, u64 value, u64 &size) {
   if (value >= 10) {
     buffer = fillBuffer(buffer, value / 10, size);
@@ -31,6 +33,9 @@ char *fillBuffer(char *buffer, u64 value, u64 &size) {
   return buffer + 1;
 }
 
+//! @endcond
+
+//! Class representing strings with memory handled by the class for easy usage.
 export class String {
   char *buffer;
   u64 size;
@@ -142,6 +147,7 @@ public:
   friend String operator+(const String &lval, const char *rval);
   friend String operator+(const char *lval, const String &rval);
 
+  //! Load a file and puts its content in a String.
   [[nodiscard]] static String fromFile(const String &filename) {
     int fd = open(filename.buffer);
     u64 size = getFileSize(fd);
@@ -157,6 +163,7 @@ public:
     return move(result);
   }
 
+  //! Generate a String that reprensent the integer value.
   [[nodiscard]] static String of(u64 value) {
     char buff[21];
     u64 size = 0;
@@ -193,6 +200,12 @@ public:
       return *this;
     }
   };
+
+  bool startsWith(String prefix) {
+    if (size < prefix.size)
+      return false;
+    return streq(buffer, prefix.buffer, prefix.size - 1);
+  }
 
 public:
   Iterator begin() { return Iterator(this, 0); }
