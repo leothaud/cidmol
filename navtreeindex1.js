@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"structgssa_1_1LoadOperation.html":[0,0,2,11],
+"structgssa_1_1MetaOperation.html":[0,0,2,12],
 "structgssa_1_1MuOperation.html":[0,0,2,13],
 "structgssa_1_1NotOperation.html":[0,0,2,14],
 "structgssa_1_1Operation.html":[0,0,2,15],
@@ -11,14 +13,14 @@ var NAVTREEINDEX1 =
 "structgssa_1_1XorOperation.html":[0,0,2,21],
 "symbolTableImpl_8cpp_source.html":[1,0,0,0,8],
 "symbolTable_8cpp_source.html":[1,0,0,0,7],
-"syscalls_8cpp_source.html":[1,0,0,2,22],
-"threads_8cpp_source.html":[1,0,0,2,23],
+"syscalls_8cpp_source.html":[1,0,0,2,23],
+"threads_8cpp_source.html":[1,0,0,2,24],
 "tokens_8cpp_source.html":[1,0,0,0,9],
-"traits_8cpp_source.html":[1,0,0,2,24],
-"unioncore_1_1Elf32AuxvValue.html":[0,0,1,4],
-"uniquePtr_8cpp_source.html":[1,0,0,2,25],
-"unmangler_8cpp_source.html":[1,0,0,2,26],
-"variant_8cpp_source.html":[1,0,0,2,27],
-"vector_8cpp_source.html":[1,0,0,2,28],
-"zip_8cpp_source.html":[1,0,0,2,29]
+"traits_8cpp_source.html":[1,0,0,2,25],
+"unioncore_1_1Elf32AuxvValue.html":[0,0,1,5],
+"uniquePtr_8cpp_source.html":[1,0,0,2,26],
+"unmangler_8cpp_source.html":[1,0,0,2,27],
+"variant_8cpp_source.html":[1,0,0,2,28],
+"vector_8cpp_source.html":[1,0,0,2,29],
+"zip_8cpp_source.html":[1,0,0,2,30]
 };

@@ -108,6 +108,7 @@ var annotated_dup =
       [ "Allocator", "structcore_1_1Allocator.html", "structcore_1_1Allocator" ],
       [ "CxaAtExitElement", "structcore_1_1CxaAtExitElement.html", null ],
       [ "CxaThreadAtExitWrapper", "structcore_1_1CxaThreadAtExitWrapper.html", null ],
+      [ "demangleResult", "structcore_1_1demangleResult.html", null ],
       [ "Elf32Auxv", "structcore_1_1Elf32Auxv.html", null ],
       [ "Elf32AuxvValue", "unioncore_1_1Elf32AuxvValue.html", null ],
       [ "Elf64Hdr", "structcore_1_1Elf64Hdr.html", null ],

@@ -4,6 +4,7 @@ var dir_aebb8dcc11953d78e620bbef0b9e2183 =
     [ "builtins.cpp", "builtins_8cpp_source.html", null ],
     [ "core.cpp", "core_8cpp_source.html", null ],
     [ "cstring.cpp", "cstring_8cpp_source.html", null ],
+    [ "demangler.cpp", "demangler_8cpp_source.html", null ],
     [ "elf64.cpp", "elf64_8cpp_source.html", null ],
     [ "errors.cpp", "errors_8cpp_source.html", null ],
     [ "functions.cpp", "functions_8cpp_source.html", null ],
