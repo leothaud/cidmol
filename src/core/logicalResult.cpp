@@ -81,7 +81,7 @@ public:
   }
 
   template <typename U>
-    requires(IsConstructibleBase<T, U>::value)
+    requires(isConstructible<T, U>)
   LogicalResult(U &&value)
       : result(true), message(""), value{forward<U>(value)} {}
 

@@ -186,18 +186,19 @@ export template <typename F, typename... ARGS>
 constexpr bool IsCallable = IsCallableBase<F, ARGS...>::value;
 
 template <typename T, typename... Args> struct IsConstructibleBase {
-
+private:
   template <typename U, typename... A>
   static char test(decltype(U(declval<A>()...)) *);
 
-  template <typename> static int test(...);
+  template <typename, typename...> static int test(...);
 
+public:
   static constexpr bool value =
-      sizeof(decltype(test<T, Args...>)) == sizeof(char);
+      sizeof(test<T, Args...>(nullptr)) == sizeof(char);
 };
 
 export template <typename T, typename... Args>
-using IsConstructible = IsConstructibleBase<T, Args...>::value;
+constexpr bool isConstructible = IsConstructibleBase<T, Args...>::value;
 
 export template <auto T, auto... Ts> struct FirstTemplateBase {
   static constexpr auto value = T;
