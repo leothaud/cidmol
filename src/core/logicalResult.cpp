@@ -80,6 +80,11 @@ public:
     return LogicalResult<T>(false, message, T{});
   }
 
+  template <typename U>
+    requires(IsConstructibleBase<T, U>::value)
+  LogicalResult(U &&value)
+      : result(true), message(""), value{forward<U>(value)} {}
+
   LogicalResult(const T &value) : result(true), message(""), value(value) {}
   LogicalResult(T &&value) : result(true), message(""), value(move(value)) {}
 
@@ -101,6 +106,8 @@ public:
   T &operator*() const { return getValue(); }
 
   T &operator*() { return getValue(); }
+  T *operator->() const { return &value; }
+  T *operator->() { return &value; }
 
   template <typename T2> operator LogicalResult<T2>() {
     assert(!result, "LogicalResult conversion are only available on failure.");
