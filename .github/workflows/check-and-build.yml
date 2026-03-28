@@ -26,15 +26,18 @@ jobs:
     container:
       image: leothaud/cidmol-build:latest
       options: --user 1002:1002
-    # Request permissions to push to gh-pages branch.
-    permissions:
-      contents: write
     steps:
       - name: Debug build
         run: |
           mkdir -p "$GITHUB_WORKSPACE/debug-build"
           cd "$GITHUB_WORKSPACE/debug-build"
           cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Debug
+          cmake --build .
+      - name: Multi-thread build
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/multi-thread-build"
+          cd "$GITHUB_WORKSPACE/debug-build"
+          cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Debug -DCORE_THREAD
           cmake --build .
       - name: Release build
         run: |
