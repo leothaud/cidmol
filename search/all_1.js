@@ -4,13 +4,14 @@ var searchData=
   ['bandaffecexpression_1',['BandAffecExpression',['../structast_1_1BandAffecExpression.html',1,'ast']]],
   ['bandexpression_2',['BandExpression',['../structast_1_1BandExpression.html',1,'ast']]],
   ['base_3',['Base',['../structBase.html',1,'']]],
-  ['bitcastexpression_4',['BitCastExpression',['../structast_1_1BitCastExpression.html',1,'ast']]],
-  ['bittype_5',['BitType',['../structast_1_1BitType.html',1,'ast']]],
-  ['bnotexpression_6',['BnotExpression',['../structast_1_1BnotExpression.html',1,'ast']]],
-  ['boraffecexpression_7',['BorAffecExpression',['../structast_1_1BorAffecExpression.html',1,'ast']]],
-  ['borexpression_8',['BorExpression',['../structast_1_1BorExpression.html',1,'ast']]],
-  ['breakstmt_9',['BreakStmt',['../structast_1_1BreakStmt.html',1,'ast']]],
-  ['buffer_10',['buffer',['../classcore_1_1Vector.html#ac3bb217ab24022fd2c38d876abc9ec82',1,'core::Vector']]],
-  ['bxoraffecexpression_11',['BxorAffecExpression',['../structast_1_1BxorAffecExpression.html',1,'ast']]],
-  ['bxorexpression_12',['BxorExpression',['../structast_1_1BxorExpression.html',1,'ast']]]
+  ['basetype_4',['BaseType',['../structcore_1_1BaseType.html',1,'core']]],
+  ['bitcastexpression_5',['BitCastExpression',['../structast_1_1BitCastExpression.html',1,'ast']]],
+  ['bittype_6',['BitType',['../structast_1_1BitType.html',1,'ast']]],
+  ['bnotexpression_7',['BnotExpression',['../structast_1_1BnotExpression.html',1,'ast']]],
+  ['boraffecexpression_8',['BorAffecExpression',['../structast_1_1BorAffecExpression.html',1,'ast']]],
+  ['borexpression_9',['BorExpression',['../structast_1_1BorExpression.html',1,'ast']]],
+  ['breakstmt_10',['BreakStmt',['../structast_1_1BreakStmt.html',1,'ast']]],
+  ['buffer_11',['buffer',['../classcore_1_1Vector.html#ac3bb217ab24022fd2c38d876abc9ec82',1,'core::Vector']]],
+  ['bxoraffecexpression_12',['BxorAffecExpression',['../structast_1_1BxorAffecExpression.html',1,'ast']]],
+  ['bxorexpression_13',['BxorExpression',['../structast_1_1BxorExpression.html',1,'ast']]]
 ];

@@ -7,7 +7,15 @@ var hierarchy =
     ] ],
     [ "core::CxaAtExitElement", "structcore_1_1CxaAtExitElement.html", null ],
     [ "core::CxaThreadAtExitWrapper", "structcore_1_1CxaThreadAtExitWrapper.html", null ],
-    [ "core::demangleResult", "structcore_1_1demangleResult.html", null ],
+    [ "core::DemangledType", "structcore_1_1DemangledType.html", [
+      [ "core::BaseType", "structcore_1_1BaseType.html", null ],
+      [ "core::ConstType", "structcore_1_1ConstType.html", null ],
+      [ "core::FunctionType", "structcore_1_1FunctionType.html", null ],
+      [ "core::LvalueType", "structcore_1_1LvalueType.html", null ],
+      [ "core::PointerType", "structcore_1_1PointerType.html", null ],
+      [ "core::RvalueType", "structcore_1_1RvalueType.html", null ]
+    ] ],
+    [ "core::DemangleResult", "structcore_1_1DemangleResult.html", null ],
     [ "core::Elf32Auxv", "structcore_1_1Elf32Auxv.html", null ],
     [ "core::Elf32AuxvValue", "unioncore_1_1Elf32AuxvValue.html", null ],
     [ "core::Elf64Hdr", "structcore_1_1Elf64Hdr.html", null ],
@@ -209,6 +217,7 @@ var hierarchy =
       [ "ast::Statement", "structast_1_1Statement.html", null ]
     ] ],
     [ "core::Vector< T >", "classcore_1_1Vector.html", null ],
+    [ "core::Vector< core::DemangledType * >", "classcore_1_1Vector.html", null ],
     [ "core::Vector< core::SharedPtr< ast::symbolTable::Entry > >", "classcore_1_1Vector.html", null ],
     [ "core::Vector< core::String >", "classcore_1_1Vector.html", null ],
     [ "core::Vector< core::UniquePtr< ast::Argument > >", "classcore_1_1Vector.html", null ],

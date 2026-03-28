@@ -114,6 +114,10 @@ Collaboration diagram for core::LogicalResult&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ae506a0e74b92858be7e1871a8ad0856e"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; <br />
+requires (isConstructible&lt;T, U&gt;)</td></tr>
+<tr class="memitem:ae506a0e74b92858be7e1871a8ad0856e"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classcore_1_1LogicalResult.html#ae506a0e74b92858be7e1871a8ad0856e">LogicalResult</a> (U &amp;&amp;value)</td></tr>
+<tr class="separator:ae506a0e74b92858be7e1871a8ad0856e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae235edfe415cb533d8067766bc0b11bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1LogicalResult.html#ae235edfe415cb533d8067766bc0b11bb">LogicalResult</a> (const T &amp;value)</td></tr>
 <tr class="separator:ae235edfe415cb533d8067766bc0b11bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5076a9301b6161f10742a50b39b6cd8f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1LogicalResult.html#a5076a9301b6161f10742a50b39b6cd8f">LogicalResult</a> (T &amp;&amp;value)</td></tr>
@@ -132,6 +136,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a09f4895ddd245b552d60b2969e7a6e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a626530dac6b6e7dbf55bd6dc5e569284"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1LogicalResult.html#a626530dac6b6e7dbf55bd6dc5e569284">operator*</a> ()</td></tr>
 <tr class="separator:a626530dac6b6e7dbf55bd6dc5e569284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8db8d06e90777221fe75ac9bd7eef9"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1LogicalResult.html#aab8db8d06e90777221fe75ac9bd7eef9">operator-&gt;</a> () const</td></tr>
+<tr class="separator:aab8db8d06e90777221fe75ac9bd7eef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c745d7699ab18fe89895bab5e4f4741"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1LogicalResult.html#a9c745d7699ab18fe89895bab5e4f4741">operator-&gt;</a> ()</td></tr>
+<tr class="separator:a9c745d7699ab18fe89895bab5e4f4741"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a679d2dc55ff0f6c5b854678242068577"><td class="memTemplParams" colspan="2">template&lt;typename T2 &gt; </td></tr>
 <tr class="memitem:a679d2dc55ff0f6c5b854678242068577"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classcore_1_1LogicalResult.html#a679d2dc55ff0f6c5b854678242068577">operator LogicalResult&lt; T2 &gt;</a> ()</td></tr>
 <tr class="separator:a679d2dc55ff0f6c5b854678242068577"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,7 +181,7 @@ class core::LogicalResult&lt; T &gt;</div><p>Class used as function result value
 <p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00061">61</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aaa49ed5192670e8672b31cdf7728d2f3" name="aaa49ed5192670e8672b31cdf7728d2f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa49ed5192670e8672b31cdf7728d2f3">&#9670;&#160;</a></span>LogicalResult() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa49ed5192670e8672b31cdf7728d2f3">&#9670;&#160;</a></span>LogicalResult() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -220,7 +228,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a449f27ee51b1f5504b2dad6c582d81db" name="a449f27ee51b1f5504b2dad6c582d81db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a449f27ee51b1f5504b2dad6c582d81db">&#9670;&#160;</a></span>LogicalResult() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a449f27ee51b1f5504b2dad6c582d81db">&#9670;&#160;</a></span>LogicalResult() <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -266,8 +274,42 @@ template&lt;typename T &gt; </div>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="ae506a0e74b92858be7e1871a8ad0856e" name="ae506a0e74b92858be7e1871a8ad0856e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae506a0e74b92858be7e1871a8ad0856e">&#9670;&#160;</a></span>LogicalResult() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<div class="memtemplate">
+template&lt;typename U &gt; <br />
+requires (isConstructible&lt;T, U&gt;)</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcore_1_1LogicalResult.html">core::LogicalResult</a>&lt; T &gt;::LogicalResult </td>
+          <td>(</td>
+          <td class="paramtype">U &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00085">85</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   86</span>      : result(<span class="keyword">true</span>), message(<span class="stringliteral">&quot;&quot;</span>), value{forward&lt;U&gt;(value)} {}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ae235edfe415cb533d8067766bc0b11bb" name="ae235edfe415cb533d8067766bc0b11bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae235edfe415cb533d8067766bc0b11bb">&#9670;&#160;</a></span>LogicalResult() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae235edfe415cb533d8067766bc0b11bb">&#9670;&#160;</a></span>LogicalResult() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -292,13 +334,13 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00083">83</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   83</span>: result(<span class="keyword">true</span>), message(<span class="stringliteral">&quot;&quot;</span>), value(value) {}</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00088">88</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   88</span>: result(<span class="keyword">true</span>), message(<span class="stringliteral">&quot;&quot;</span>), value(value) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <a id="a5076a9301b6161f10742a50b39b6cd8f" name="a5076a9301b6161f10742a50b39b6cd8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5076a9301b6161f10742a50b39b6cd8f">&#9670;&#160;</a></span>LogicalResult() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5076a9301b6161f10742a50b39b6cd8f">&#9670;&#160;</a></span>LogicalResult() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -323,8 +365,8 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00084">84</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   84</span>: result(<span class="keyword">true</span>), message(<span class="stringliteral">&quot;&quot;</span>), value(move(value)) {}</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00089">89</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   89</span>: result(<span class="keyword">true</span>), message(<span class="stringliteral">&quot;&quot;</span>), value(move(value)) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -354,8 +396,8 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00087">87</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   87</span>{ <span class="keywordflow">return</span> !result; }</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00092">92</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   92</span>{ <span class="keywordflow">return</span> !result; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -417,11 +459,11 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00088">88</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   88</span>                            {</div>
-<div class="line"><span class="lineno">   89</span>    assert(!result, <span class="stringliteral">&quot;getMessage on not failed LogicalResult.\n&quot;</span>);</div>
-<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">return</span> message;</div>
-<div class="line"><span class="lineno">   91</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00093">93</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   93</span>                            {</div>
+<div class="line"><span class="lineno">   94</span>    assert(!result, <span class="stringliteral">&quot;getMessage on not failed LogicalResult.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   95</span>    <span class="keywordflow">return</span> message;</div>
+<div class="line"><span class="lineno">   96</span>  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -450,11 +492,11 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00096">96</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   96</span>                {</div>
-<div class="line"><span class="lineno">   97</span>    assert(result, <span class="stringliteral">&quot;getValue on failed LogicalResult.\n&quot;</span>);</div>
-<div class="line"><span class="lineno">   98</span>    <span class="keywordflow">return</span> value;</div>
-<div class="line"><span class="lineno">   99</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00101">101</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  101</span>                {</div>
+<div class="line"><span class="lineno">  102</span>    assert(result, <span class="stringliteral">&quot;getValue on failed LogicalResult.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  103</span>    <span class="keywordflow">return</span> value;</div>
+<div class="line"><span class="lineno">  104</span>  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -483,11 +525,11 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00092">92</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   92</span>                      {</div>
-<div class="line"><span class="lineno">   93</span>    assert(result, <span class="stringliteral">&quot;getValue on failed LogicalResult.\n&quot;</span>);</div>
-<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">return</span> value;</div>
-<div class="line"><span class="lineno">   95</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00097">97</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   97</span>                      {</div>
+<div class="line"><span class="lineno">   98</span>    assert(result, <span class="stringliteral">&quot;getValue on failed LogicalResult.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">return</span> value;</div>
+<div class="line"><span class="lineno">  100</span>  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -518,11 +560,11 @@ template&lt;typename T2 &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00105">105</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  105</span>                                                      {</div>
-<div class="line"><span class="lineno">  106</span>    assert(!result, <span class="stringliteral">&quot;LogicalResult conversion are only available on failure.&quot;</span>);</div>
-<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">return</span> LogicalResult&lt;T2&gt;::failure(message);</div>
-<div class="line"><span class="lineno">  108</span>  }</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00112">112</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>                                                      {</div>
+<div class="line"><span class="lineno">  113</span>    assert(!result, <span class="stringliteral">&quot;LogicalResult conversion are only available on failure.&quot;</span>);</div>
+<div class="line"><span class="lineno">  114</span>    <span class="keywordflow">return</span> LogicalResult&lt;T2&gt;::failure(message);</div>
+<div class="line"><span class="lineno">  115</span>  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -551,8 +593,8 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00103">103</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  103</span>{ <span class="keywordflow">return</span> getValue(); }</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00108">108</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  108</span>{ <span class="keywordflow">return</span> getValue(); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -581,8 +623,68 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00101">101</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  101</span>{ <span class="keywordflow">return</span> getValue(); }</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00106">106</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  106</span>{ <span class="keywordflow">return</span> getValue(); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a9c745d7699ab18fe89895bab5e4f4741" name="a9c745d7699ab18fe89895bab5e4f4741"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c745d7699ab18fe89895bab5e4f4741">&#9670;&#160;</a></span>operator-&gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T * <a class="el" href="classcore_1_1LogicalResult.html">core::LogicalResult</a>&lt; T &gt;::operator-&gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00110">110</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  110</span>{ <span class="keywordflow">return</span> &amp;value; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aab8db8d06e90777221fe75ac9bd7eef9" name="aab8db8d06e90777221fe75ac9bd7eef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8db8d06e90777221fe75ac9bd7eef9">&#9670;&#160;</a></span>operator-&gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T * <a class="el" href="classcore_1_1LogicalResult.html">core::LogicalResult</a>&lt; T &gt;::operator-&gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00109">109</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  109</span>{ <span class="keywordflow">return</span> &amp;value; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -611,8 +713,8 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00086">86</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   86</span>{ <span class="keywordflow">return</span> result; }</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00091">91</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   91</span>{ <span class="keywordflow">return</span> result; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -719,11 +821,11 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00114">114</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  114</span>                                                                    {</div>
-<div class="line"><span class="lineno">  115</span>  core::assert(result.failed());</div>
-<div class="line"><span class="lineno">  116</span>  <span class="keywordflow">return</span> (stream &lt;&lt; result.message);</div>
-<div class="line"><span class="lineno">  117</span>}</div>
+<p class="definition">Definition at line <a class="el" href="logicalResult_8cpp_source.html#l00121">121</a> of file <a class="el" href="logicalResult_8cpp_source.html">logicalResult.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  121</span>                                                                    {</div>
+<div class="line"><span class="lineno">  122</span>  core::assert(result.failed());</div>
+<div class="line"><span class="lineno">  123</span>  <span class="keywordflow">return</span> (stream &lt;&lt; result.message);</div>
+<div class="line"><span class="lineno">  124</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

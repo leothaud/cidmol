@@ -1,5 +1,12 @@
 var NAVTREEINDEX1 =
 {
+"structgssa_1_1ConcatOperation.html":[0,0,2,4],
+"structgssa_1_1ConstOperation.html":[0,0,2,5],
+"structgssa_1_1DerefOperation.html":[0,0,2,6],
+"structgssa_1_1ExtractOperation.html":[0,0,2,7],
+"structgssa_1_1Function.html":[0,0,2,8],
+"structgssa_1_1FunctionAttribute.html":[0,0,2,9],
+"structgssa_1_1GammaOperation.html":[0,0,2,10],
 "structgssa_1_1LoadOperation.html":[0,0,2,11],
 "structgssa_1_1MetaOperation.html":[0,0,2,12],
 "structgssa_1_1MuOperation.html":[0,0,2,13],
@@ -17,7 +24,7 @@ var NAVTREEINDEX1 =
 "threads_8cpp_source.html":[1,0,0,2,24],
 "tokens_8cpp_source.html":[1,0,0,0,9],
 "traits_8cpp_source.html":[1,0,0,2,25],
-"unioncore_1_1Elf32AuxvValue.html":[0,0,1,5],
+"unioncore_1_1Elf32AuxvValue.html":[0,0,1,8],
 "uniquePtr_8cpp_source.html":[1,0,0,2,26],
 "unmangler_8cpp_source.html":[1,0,0,2,27],
 "variant_8cpp_source.html":[1,0,0,2,28],

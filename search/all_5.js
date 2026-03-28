@@ -12,7 +12,8 @@ var searchData=
   ['function_9',['Function',['../classcore_1_1Function.html',1,'core::Function&lt; R, Args &gt;'],['../structgssa_1_1Function.html',1,'gssa::Function']]],
   ['functionattribute_10',['FunctionAttribute',['../structgssa_1_1FunctionAttribute.html',1,'gssa']]],
   ['functiondeclaration_11',['FunctionDeclaration',['../structast_1_1FunctionDeclaration.html',1,'ast']]],
-  ['funexpression_12',['FunExpression',['../structast_1_1FunExpression.html',1,'ast']]],
-  ['funtype_13',['FunType',['../structast_1_1FunType.html',1,'ast']]],
-  ['futex_14',['futex',['../structcore_1_1stackHead.html#a706dda95ad73fb6fb77304900645a51d',1,'core::stackHead::futex()'],['../classcore_1_1StartThreadOptions.html#a7a7a56bd316e1af21482c51f55478e53',1,'core::StartThreadOptions::futex()']]]
+  ['functiontype_12',['FunctionType',['../structcore_1_1FunctionType.html',1,'core']]],
+  ['funexpression_13',['FunExpression',['../structast_1_1FunExpression.html',1,'ast']]],
+  ['funtype_14',['FunType',['../structast_1_1FunType.html',1,'ast']]],
+  ['futex_15',['futex',['../structcore_1_1stackHead.html#a706dda95ad73fb6fb77304900645a51d',1,'core::stackHead::futex()'],['../classcore_1_1StartThreadOptions.html#a7a7a56bd316e1af21482c51f55478e53',1,'core::StartThreadOptions::futex()']]]
 ];

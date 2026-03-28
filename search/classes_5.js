@@ -9,6 +9,7 @@ var searchData=
   ['function_6',['Function',['../classcore_1_1Function.html',1,'core::Function&lt; R, Args &gt;'],['../structgssa_1_1Function.html',1,'gssa::Function']]],
   ['functionattribute_7',['FunctionAttribute',['../structgssa_1_1FunctionAttribute.html',1,'gssa']]],
   ['functiondeclaration_8',['FunctionDeclaration',['../structast_1_1FunctionDeclaration.html',1,'ast']]],
-  ['funexpression_9',['FunExpression',['../structast_1_1FunExpression.html',1,'ast']]],
-  ['funtype_10',['FunType',['../structast_1_1FunType.html',1,'ast']]]
+  ['functiontype_9',['FunctionType',['../structcore_1_1FunctionType.html',1,'core']]],
+  ['funexpression_10',['FunExpression',['../structast_1_1FunExpression.html',1,'ast']]],
+  ['funtype_11',['FunType',['../structast_1_1FunType.html',1,'ast']]]
 ];

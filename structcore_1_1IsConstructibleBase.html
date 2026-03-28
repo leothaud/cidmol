@@ -90,28 +90,28 @@ $(document).ready(function(){initNavTree('structcore_1_1IsConstructibleBase.html
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="structcore_1_1IsConstructibleBase-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">core::IsConstructibleBase&lt; T, Args &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a9ffac0f32f9cec25110a4e9073638795"><td class="memTemplParams" colspan="2"><a id="a9ffac0f32f9cec25110a4e9073638795" name="a9ffac0f32f9cec25110a4e9073638795"></a>
-template&lt;typename U , typename... A&gt; </td></tr>
-<tr class="memitem:a9ffac0f32f9cec25110a4e9073638795"><td class="memTemplItemLeft" align="right" valign="top">static char&#160;</td><td class="memTemplItemRight" valign="bottom"><b>test</b> (decltype(U(declval&lt; <a class="el" href="structA.html">A</a> &gt;()...)) *)</td></tr>
-<tr class="separator:a9ffac0f32f9cec25110a4e9073638795"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8428f0259eec477fd727f3619d20093d"><td class="memTemplParams" colspan="2"><a id="a8428f0259eec477fd727f3619d20093d" name="a8428f0259eec477fd727f3619d20093d"></a>
-template&lt;typename &gt; </td></tr>
-<tr class="memitem:a8428f0259eec477fd727f3619d20093d"><td class="memTemplItemLeft" align="right" valign="top">static int&#160;</td><td class="memTemplItemRight" valign="bottom"><b>test</b> (...)</td></tr>
-<tr class="separator:a8428f0259eec477fd727f3619d20093d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:af247efa51cc591019b54a3d8c938367d"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcore_1_1IsConstructibleBase.html#af247efa51cc591019b54a3d8c938367d">value</a></td></tr>
 <tr class="separator:af247efa51cc591019b54a3d8c938367d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a9ffac0f32f9cec25110a4e9073638795"><td class="memTemplParams" colspan="2"><a id="a9ffac0f32f9cec25110a4e9073638795" name="a9ffac0f32f9cec25110a4e9073638795"></a>
+template&lt;typename U , typename... A&gt; </td></tr>
+<tr class="memitem:a9ffac0f32f9cec25110a4e9073638795"><td class="memTemplItemLeft" align="right" valign="top">static char&#160;</td><td class="memTemplItemRight" valign="bottom"><b>test</b> (decltype(U(declval&lt; <a class="el" href="structA.html">A</a> &gt;()...)) *)</td></tr>
+<tr class="separator:a9ffac0f32f9cec25110a4e9073638795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a676d9ad456ba35905e8fff78b5096f33"><td class="memTemplParams" colspan="2"><a id="a676d9ad456ba35905e8fff78b5096f33" name="a676d9ad456ba35905e8fff78b5096f33"></a>
+template&lt;typename , typename... &gt; </td></tr>
+<tr class="memitem:a676d9ad456ba35905e8fff78b5096f33"><td class="memTemplItemLeft" align="right" valign="top">static int&#160;</td><td class="memTemplItemRight" valign="bottom"><b>test</b> (...)</td></tr>
+<tr class="separator:a676d9ad456ba35905e8fff78b5096f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename... Args&gt;<br />
@@ -140,9 +140,9 @@ template&lt;typename T , typename... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line">      <span class="keyword">sizeof</span>(<span class="keyword">decltype</span>(test&lt;T, Args...&gt;)) == <span class="keyword">sizeof</span>(char)</div>
+<div class="line">      <span class="keyword">sizeof</span>(test&lt;T, Args...&gt;(<span class="keyword">nullptr</span>)) == <span class="keyword">sizeof</span>(char)</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="traits_8cpp_source.html#l00195">195</a> of file <a class="el" href="traits_8cpp_source.html">traits.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="traits_8cpp_source.html#l00196">196</a> of file <a class="el" href="traits_8cpp_source.html">traits.cpp</a>.</p>
 
 </div>
 </div>

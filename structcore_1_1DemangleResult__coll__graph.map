@@ -1,5 +1,5 @@
-<map id="core::demangleResult" name="core::demangleResult">
-<area shape="rect" id="node1" title=" " alt="" coords="7,211,171,236"/>
+<map id="core::DemangleResult" name="core::DemangleResult">
+<area shape="rect" id="node1" title=" " alt="" coords="6,211,173,236"/>
 <area shape="rect" id="node2" href="$classcore_1_1Vector.html" title=" " alt="" coords="150,93,293,133"/>
 <area shape="rect" id="node3" href="$classcore_1_1String.html" title="Class representing strings with memory handled by the class for easy usage." alt="" coords="5,5,101,31"/>
 </map>
