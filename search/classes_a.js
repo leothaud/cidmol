@@ -8,10 +8,12 @@ var searchData=
   ['metaoperation_5',['MetaOperation',['../structgssa_1_1MetaOperation.html',1,'gssa']]],
   ['modaffecexpression_6',['ModAffecExpression',['../structast_1_1ModAffecExpression.html',1,'ast']]],
   ['modexpression_7',['ModExpression',['../structast_1_1ModExpression.html',1,'ast']]],
-  ['mulaffecexpression_8',['MulAffecExpression',['../structast_1_1MulAffecExpression.html',1,'ast']]],
-  ['mulexpression_9',['MulExpression',['../structast_1_1MulExpression.html',1,'ast']]],
-  ['multiset_10',['MultiSet',['../classcore_1_1MultiSet.html',1,'core']]],
-  ['multiset_3c_20gssa_3a_3aoperation_20_2a_20_3e_11',['MultiSet&lt; gssa::Operation * &gt;',['../classcore_1_1MultiSet.html',1,'core']]],
-  ['muoperation_12',['MuOperation',['../structgssa_1_1MuOperation.html',1,'gssa']]],
-  ['mutex_13',['Mutex',['../structcore_1_1Mutex.html',1,'core']]]
+  ['modulebasesymbol_8',['ModuleBaseSymbol',['../structcore_1_1ModuleBaseSymbol.html',1,'core']]],
+  ['modulesymbol_9',['ModuleSymbol',['../structcore_1_1ModuleSymbol.html',1,'core']]],
+  ['mulaffecexpression_10',['MulAffecExpression',['../structast_1_1MulAffecExpression.html',1,'ast']]],
+  ['mulexpression_11',['MulExpression',['../structast_1_1MulExpression.html',1,'ast']]],
+  ['multiset_12',['MultiSet',['../classcore_1_1MultiSet.html',1,'core']]],
+  ['multiset_3c_20gssa_3a_3aoperation_20_2a_20_3e_13',['MultiSet&lt; gssa::Operation * &gt;',['../classcore_1_1MultiSet.html',1,'core']]],
+  ['muoperation_14',['MuOperation',['../structgssa_1_1MuOperation.html',1,'gssa']]],
+  ['mutex_15',['Mutex',['../structcore_1_1Mutex.html',1,'core']]]
 ];

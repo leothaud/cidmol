@@ -15,6 +15,7 @@ var searchData=
   ['uniqueptr_3c_20ast_3a_3aswitchitem_20_3e_12',['UniquePtr&lt; ast::SwitchItem &gt;',['../classcore_1_1UniquePtr.html',1,'core']]],
   ['uniqueptr_3c_20ast_3a_3atype_20_3e_13',['UniquePtr&lt; ast::Type &gt;',['../classcore_1_1UniquePtr.html',1,'core']]],
   ['uniqueptr_3c_20ast_3a_3avariabledeclaration_20_3e_14',['UniquePtr&lt; ast::VariableDeclaration &gt;',['../classcore_1_1UniquePtr.html',1,'core']]],
-  ['uniqueptr_3c_20gssa_3a_3ametaoperation_20_3e_15',['UniquePtr&lt; gssa::MetaOperation &gt;',['../classcore_1_1UniquePtr.html',1,'core']]],
-  ['uniqueptr_3c_20gssa_3a_3avalue_20_3e_16',['UniquePtr&lt; gssa::Value &gt;',['../classcore_1_1UniquePtr.html',1,'core']]]
+  ['uniqueptr_3c_20core_3a_3ademangledsymbol_20_3e_15',['UniquePtr&lt; core::DemangledSymbol &gt;',['../classcore_1_1UniquePtr.html',1,'core']]],
+  ['uniqueptr_3c_20gssa_3a_3ametaoperation_20_3e_16',['UniquePtr&lt; gssa::MetaOperation &gt;',['../classcore_1_1UniquePtr.html',1,'core']]],
+  ['uniqueptr_3c_20gssa_3a_3avalue_20_3e_17',['UniquePtr&lt; gssa::Value &gt;',['../classcore_1_1UniquePtr.html',1,'core']]]
 ];

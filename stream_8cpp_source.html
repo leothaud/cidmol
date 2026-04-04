@@ -118,7 +118,7 @@ $(document).ready(function(){initNavTree('stream_8cpp_source.html',''); initResi
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">int</span> fd;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">explicit</span> <a class="code hl_class" href="classcore_1_1FdStream.html">FdStream</a>(<span class="keywordtype">int</span> fd) : fd(fd) {}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">constexpr</span> <span class="keyword">explicit</span> <a class="code hl_class" href="classcore_1_1FdStream.html">FdStream</a>(<span class="keywordtype">int</span> fd) : fd(fd) {}</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <a class="code hl_class" href="classcore_1_1FdStream.html">FdStream</a> &amp;operator&lt;&lt;(<span class="keyword">const</span> <span class="keywordtype">char</span> *str) {</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    write(fd, str);</div>

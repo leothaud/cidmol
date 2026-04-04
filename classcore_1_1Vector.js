@@ -1,6 +1,7 @@
 var classcore_1_1Vector =
 [
     [ "Iterator", "classcore_1_1Vector_1_1Iterator.html", null ],
+    [ "ReverseIterator", "classcore_1_1Vector_1_1ReverseIterator.html", null ],
     [ "grow", "classcore_1_1Vector.html#aced1b2570e768f42990b0b738c647cb4", null ],
     [ "length", "classcore_1_1Vector.html#a7bcdc64e8d989c3388c64a02bd09b3fc", null ],
     [ "operator[]", "classcore_1_1Vector.html#aa9e5ff5ec97a2b3b9022efc038012150", null ],

@@ -45,7 +45,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "allocs_8cpp_source.html",
-"structgssa_1_1ConcatOperation.html"
+"structcore_1_1Zipped_1_1Iterator.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

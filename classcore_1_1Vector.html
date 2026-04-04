@@ -109,6 +109,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Vector_1_1Iterator.html">Iterator</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcore_1_1Vector_1_1Iterator.html" title="Iterator over the vector buffer.">Iterator</a> over the vector buffer.  <a href="classcore_1_1Vector_1_1Iterator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Vector_1_1ReverseIterator.html">ReverseIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcore_1_1Vector_1_1Iterator.html" title="Iterator over the vector buffer.">Iterator</a> over the vector buffer.  <a href="classcore_1_1Vector_1_1ReverseIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -141,6 +144,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a02319d4cb2e7d1d341ae05dc4fe88e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f66c59948bf20ea4b66dadbe3ba5063"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcore_1_1Vector_1_1Iterator.html">Iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Vector.html#a7f66c59948bf20ea4b66dadbe3ba5063">end</a> () const</td></tr>
 <tr class="separator:a7f66c59948bf20ea4b66dadbe3ba5063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6b20a1788c94a690b8dd19ca344684d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcore_1_1Vector_1_1ReverseIterator.html">ReverseIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Vector.html#af6b20a1788c94a690b8dd19ca344684d">rbegin</a> () const</td></tr>
+<tr class="separator:af6b20a1788c94a690b8dd19ca344684d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf594c19af6bd5fc3089c3e2dd890cbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcore_1_1Vector_1_1ReverseIterator.html">ReverseIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcore_1_1Vector.html#adf594c19af6bd5fc3089c3e2dd890cbe">rend</a> () const</td></tr>
+<tr class="separator:adf594c19af6bd5fc3089c3e2dd890cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -756,6 +763,66 @@ Here is the call graph for this function:</div>
 </map>
 </div>
 
+</div>
+</div>
+<a id="af6b20a1788c94a690b8dd19ca344684d" name="af6b20a1788c94a690b8dd19ca344684d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6b20a1788c94a690b8dd19ca344684d">&#9670;&#160;</a></span>rbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcore_1_1Vector_1_1ReverseIterator.html">ReverseIterator</a> <a class="el" href="classcore_1_1Vector.html">core::Vector</a>&lt; T &gt;::rbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vector_8cpp_source.html#l00204">204</a> of file <a class="el" href="vector_8cpp_source.html">vector.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  204</span>{ <span class="keywordflow">return</span> ReverseIterator(<a class="code hl_variable" href="classcore_1_1Vector.html#ac3bb217ab24022fd2c38d876abc9ec82">buffer</a>, <a class="code hl_variable" href="classcore_1_1Vector.html#a9da7497a4fb0a83daa75e9d15e068008">size</a> - 1); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="adf594c19af6bd5fc3089c3e2dd890cbe" name="adf594c19af6bd5fc3089c3e2dd890cbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf594c19af6bd5fc3089c3e2dd890cbe">&#9670;&#160;</a></span>rend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcore_1_1Vector_1_1ReverseIterator.html">ReverseIterator</a> <a class="el" href="classcore_1_1Vector.html">core::Vector</a>&lt; T &gt;::rend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vector_8cpp_source.html#l00205">205</a> of file <a class="el" href="vector_8cpp_source.html">vector.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  205</span>{ <span class="keywordflow">return</span> ReverseIterator(<a class="code hl_variable" href="classcore_1_1Vector.html#ac3bb217ab24022fd2c38d876abc9ec82">buffer</a>, -1); }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
