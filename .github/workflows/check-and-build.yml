@@ -20,7 +20,7 @@ jobs:
           clangFormatVersion: 20
 
   build:
-    name: Build and test
+    name: Build
     runs-on: self-hosted
     needs: lint
     container:
@@ -33,21 +33,27 @@ jobs:
           cd "$GITHUB_WORKSPACE/debug-build"
           cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
-      - name: Multi-thread build
-        run: |
-          mkdir -p "$GITHUB_WORKSPACE/multi-thread-build"
-          cd "$GITHUB_WORKSPACE/debug-build"
-          cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Debug -DENABLE_THREADS=ON
-          cmake --build .
       - name: Release build
         run: |
           mkdir -p "$GITHUB_WORKSPACE/release-build"
           cd "$GITHUB_WORKSPACE/release-build"
           cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Release
           cmake --build .
+  test:
+    name: Test
+    runs-on: self-hosted
+    needs: build
+    container:
+      image: leothaud/cidmol-build:latest
+      options: --user 1002:1002
+    steps:
+      - name: Run tests
+        run: |
+          cd "$GITHUB_WORKSPACE/debug-build"
+          cmake --build . --target test
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
     permissions:
       contents: write
     steps:
