@@ -1,6 +1,7 @@
 FROM archlinux:latest
 
-RUN pacman -Syyu --noconfirm
-RUN pacman -S git cmake doxygen clang mold ninja --noconfirm
-
-USER 1002:1002
+RUN pacman -Sy --noconfirm reflector \
+  && reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist \
+  && pacman -Syyu --noconfirm \
+  && pacman -S --noconfirm git cmake doxygen clang mold ninja \
+  && pacman -Scc --noconfirm
