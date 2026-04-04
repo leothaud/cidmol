@@ -25,7 +25,10 @@ export void assert(bool cond, const char *message);
 //! @endcond
 
 //! Thread-safe list allocator.
-export template <u64 allocaSize = 32lu * 1024lu * 1024lu * 1024lu,
+export template <u64 allocaSize =
+                     ((__CORE_RAM_SIZE > 1024) ? (__CORE_RAM_SIZE - 1024)
+                                               : __CORE_RAM_SIZE) *
+                     1024lu,
                  u64 splitDelta = 1024>
 struct Allocator {
 
@@ -54,6 +57,7 @@ struct Allocator {
     front = reinterpret_cast<Header *>(
         syscall<MMAP>(0, allocaSize, PROT_READ | PROT_WRITE,
                       MAP_PRIVATE | MAP_ANONYMOUS, -1, 0));
+
     front->next = front->prev = nullptr;
     front->size = allocaSize - offset;
   }

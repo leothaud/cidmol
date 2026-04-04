@@ -58,7 +58,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(Doxygen)
 
+cmake_host_system_information(RESULT totalRam
+  QUERY AVAILABLE_VIRTUAL_MEMORY
+)
+
 project(Cidmol LANGUAGES CXX ASM)
+message("RAM: ${totalRam}")
 
 include(CTest)
 enable_testing()
@@ -90,7 +95,7 @@ endif(ENABLE_THREADS)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}   -Wall -Wextra -Werror -Wno-unused-command-line-argument  -march=native \
   -mtune=native -fno-rtti -fno-exceptions -nostdlib -ffreestanding -nostdinc \
-  -ferror-limit=0 -flto")
+  -ferror-limit=0 -flto -D__CORE_RAM_SIZE=${totalRam}")
 
 function(addSource target)
   set(sources "")
