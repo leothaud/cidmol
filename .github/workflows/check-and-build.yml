@@ -20,9 +20,6 @@ jobs:
       - name: clang-format-check
         run: |
           find ${WORK_DIR}/src -regex '.*\.\(cpp\)' -exec clang-format --dry-run --Werror {} +
-          export res=$?
-          echo "res = $res"
-          $res
       - name: Debug build
         run: |
           mkdir -p "${WORK_DIR}/debug-build"
