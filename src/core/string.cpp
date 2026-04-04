@@ -201,7 +201,7 @@ public:
     }
   };
 
-  bool startsWith(String prefix) {
+  bool startsWith(String prefix) const {
     if (size < prefix.size)
       return false;
     return streq(buffer, prefix.buffer, prefix.size - 1);
