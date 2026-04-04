@@ -45,7 +45,7 @@ public:
   template <typename... Ts> FdStream &operator<<(Color<Ts...> x);
 
   FdStream &operator<<(String str) {
-    write(fd, str.ptr(), str.length());
+    write(fd, str.ptr(), str.length() - 1);
     return *this;
   }
   FdStream &operator<<(char c) {
