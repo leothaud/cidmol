@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-
+      
+env:
+  WORK_DIR: ${{ github.workspace }}/cidmol  # Available to all jobs and steps
 jobs:
   build:
     name: Lint, build and test
@@ -13,26 +15,27 @@ jobs:
       image: leothaud/cidmol-build:latest
     steps:
       - name: Get Template Code
-        uses: actions/checkout@v4
-      - name: clang-format
-        uses: DoozyX/clang-format-lint-action@v0.20
-        with:
-          source: "./src"
-          extensions: "cpp"
-          clangFormatVersion: 20
+        run: |
+          git clone https://github.com/leothaud/cidmol.git ${WORK_DIR}
+      - name: clang-format-check
+        run: |
+          find ${WORK_DIR}/src -regex '.*\.\(cpp\)' -exec clang-format --dry-run --Werror {} +
+          export res=$?
+          echo "res = $res"
+          $res
       - name: Debug build
         run: |
-          mkdir -p "$GITHUB_WORKSPACE/debug-build"
-          cd "$GITHUB_WORKSPACE/debug-build"
+          mkdir -p "${WORK_DIR}/debug-build"
+          cd "${WORK_DIR}/debug-build"
           cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Debug
           cmake --build .
       - name: Release build
         run: |
-          mkdir -p "$GITHUB_WORKSPACE/release-build"
-          cd "$GITHUB_WORKSPACE/release-build"
+          mkdir -p "${WORK_DIR}/release-build"
+          cd "${WORK_DIR}/release-build"
           cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Release
           cmake --build .
       - name: Run tests
         run: |
-          cd "$GITHUB_WORKSPACE/debug-build"
+          cd "${WORK_DIR}/debug-build"
           cmake --build . --target test
