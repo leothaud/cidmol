@@ -1,0 +1,3 @@
+[submodule "CppCore"]
+	path = CppCore
+	url = git@github.com:leothaud/CppCore.git

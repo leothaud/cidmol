@@ -1,2 +1,0 @@
-addTest(testDemangler.cpp
-  cidmolCore)
