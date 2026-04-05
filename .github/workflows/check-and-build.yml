@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Get Template Code
         run: |
-          git clone https://github.com/${{ github.repository }}.git -b ${{ github.ref_name }} ${WORK_DIR}
+          git clone --recurse-submodules https://github.com/${{ github.repository }}.git -b ${{ github.ref_name }} ${WORK_DIR}
       - name: clang-format-check
         run: |
           find ${WORK_DIR}/src -regex '.*\.\(cpp\)' -exec clang-format --dry-run --Werror {} +
