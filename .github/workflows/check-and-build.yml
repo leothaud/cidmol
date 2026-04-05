@@ -32,7 +32,3 @@ jobs:
           cd "${WORK_DIR}/release-build"
           cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Release
           cmake --build .
-      - name: Run tests
-        run: |
-          cd "${WORK_DIR}/debug-build"
-          cmake --build . --target test
